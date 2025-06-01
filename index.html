@@ -13,16 +13,21 @@
             padding: 0;
         }
 
-        header {
-            background-color: #8d6e63; /* Light brown */
-            color: #fff;
-            padding: 20px;
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #8d6e63; /* Light brown background */
+            color: white;
             text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
+            font-size: 2em;
+            z-index: 1000; /* Makes sure it stays on top */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional subtle shadow */
         }
-
+        
+       
         header img {
             max-height: 80px; /* Adjust this as needed */
             margin-right: 20px;
@@ -115,13 +120,13 @@
 </head>
 <body>
 
-    <header>
+    <header class="fixed-header"> 
         <img src="logo.png" alt="Theatre Logo">
         <h1>AmatörKreatörerna</h1>
     </header>
 
     <section class="welcome">
-        <h2>En resa till hjärtat av teater</h2>
+        <h2>En resa till hjärtat av teater!</h2>
         <p>Vi bjuder in er till att utforska ert intresse för att stå på scen, musicera, skriva manus eller använda er kropp och röst. Vår förening sammanför den passion och kreativitet som vår vardagliga granne oftast endast drömmer om att utforska. Ta del i  </p>
     </section>
 
@@ -139,8 +144,7 @@
     <section class="social">
         <h2>Follow Us</h2>
         <a href="https://facebook.com/yourpage" target="_blank">Facebook</a> |
-        <a href="https://instagram.com/yourpage" target="_blank">Instagram</a> |
-        <a href="https://twitter.com/yourpage" target="_blank">Twitter</a>
+        <a href="https://instagram.com/yourpage" target="_blank">Instagram</a>
     </section>
 
     <footer>
