@@ -105,22 +105,58 @@
           border-radius: 8px;
         }
 
+        /* Column wrapper */
         .image-text .text-content {
+          max-width: 600px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch; /* so children use the same left edge */
+        }
+
+        /* Center the heading only */
+        .image-text .text-content h2 {
+          text-align: center;
+          margin-bottom: 16px;
+        }
+
+        /* Use a shared gutter for dots */
+        :root {
+          --bullet-gutter: 1.5rem; /* tweak to taste */
+        }
+
+        /* Paragraph: align to the bullet DOTS */
+        .image-text .text-content p {
+          text-align: left;
+          padding-left: var(--bullet-gutter);
+          margin: 0 0 14px 0;
+        }
+
+        /* List: bullets outside + same gutter */
+        .image-text .text-content ul {
+          list-style-position: outside;
+          padding-left: var(--bullet-gutter);
+          margin: 0; /* no extra shift */
+          text-align: left;
+        }
+
+        
+        /*.image-text .text-content {
           flex: 1;
           display: flex;
           flex-direction: column;
-          align-items: center;   /* center the whole column */
-          max-width: 600px;      /* keeps content in a neat column */
-          margin: 0 auto;        /* centers the column itself */
+          align-items: center;   /* center the whole column 
+          max-width: 600px;      /* keeps content in a neat column 
+          margin: 0 auto;        /* centers the column itself 
         }
 
         .image-text .text-content h2 {
-          text-align: center;    /* centered heading */
+          text-align: center;    /* centered heading 
           width: 100%;
         }
 
         .image-text .text-content p {
-          text-align: left;      /* left-aligned paragraph */
+          text-align: left;      /* left-aligned paragraph 
           width: 100%;
         }
 
@@ -251,6 +287,7 @@
 
 </body>
 </html>
+
 
 
 
