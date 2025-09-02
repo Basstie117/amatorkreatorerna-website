@@ -1,4 +1,3 @@
-<script>
 (() => {
   const sections = Array.from(document.querySelectorAll('.pop-section'));
   if (!sections.length) return;
@@ -50,4 +49,3 @@
   // initial paint
   update();
 })();
-</script>
