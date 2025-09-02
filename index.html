@@ -99,8 +99,39 @@
             background-color: #efebe9; /* Lighter beige */
             padding: 50px;
         }
+        .image-text {
+          display: flex;
+          align-items: flex-start;  /* align items at the top */
+          gap: 40px;                /* space between image and text */
+          background-color: #efebe9;
+          padding: 50px;
+        }
 
         .image-text img {
+          max-width: 40%;           /* image takes ~40% width */
+          height: auto;
+          border-radius: 8px;
+        }
+
+        .image-text .text-content {
+          flex: 1;                  /* text takes the remaining space */
+          display: flex;
+          flex-direction: column;   /* stack heading, paragraph, and list */
+          justify-content: center;
+        }
+
+        .image-text .text-content h2,
+        .image-text .text-content p,
+        .image-text .text-content ul {
+          margin-bottom: 20px;
+        }
+
+        .image-text ul {
+          list-style-position: inside;
+          padding-left: 0;
+        }
+
+        /*.image-text img {
             max-width: 800px;
             height: auto;
             border-radius: 10px;
@@ -111,8 +142,8 @@
             max-width: 800px;
             font-size: 1.2em;
             line-height: 1.6;
-            color: #4e342e; /* Medium brown */
-        }
+            color: #4e342e; /* Medium brown 
+        }*/
 
         .contact {
             background-color: #795548; /* Dark brown */
@@ -174,10 +205,11 @@
     </section>
 
     <section class="image-text">
-        <img src="DSC_0250_no_name.jpg" alt="Theatre Production Image">
+      <img src="DSC_0250_no_name.jpg" alt="Theatre Production Image">
+      <div class="text-content">
         <h2>Våra engagemang just nu</h2>
         <p>
-            Vi hos AmatörKreatörerna jobbar ständigt med våra medlemmar för att hitta och utforska vad som driver eran kreativitet. Här är en lista på de projekten vi håller på med just nu:
+          Vi hos AmatörKreatörerna jobbar ständigt med våra medlemmar för att hitta och utforska vad som driver eran kreativitet. Här är en lista på de projekten vi håller på med just nu:
         </p>
         <ul>
           <li>Hamlet</li>
@@ -185,6 +217,7 @@
           <li>A Midsummer Night's Dream</li>
           <li>Original Production: The Lost Voices</li>
         </ul>
+      </div>
     </section>
 
     <section class="contact">
@@ -216,6 +249,7 @@
 
 </body>
 </html>
+
 
 
 
