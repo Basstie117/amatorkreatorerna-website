@@ -109,13 +109,19 @@
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          text-align: center;  /* centers h2 and p */
+          align-items: center;   /* center the whole column */
+          max-width: 600px;      /* keeps content in a neat column */
+          margin: 0 auto;        /* centers the column itself */
         }
 
-        .image-text .text-content h2,
+        .image-text .text-content h2 {
+          text-align: center;    /* centered heading */
+          width: 100%;
+        }
+
         .image-text .text-content p {
-          margin-bottom: 20px;
+          text-align: left;      /* left-aligned paragraph */
+          width: 100%;
         }
 
         .image-text ul {
@@ -245,6 +251,7 @@
 
 </body>
 </html>
+
 
 
 
