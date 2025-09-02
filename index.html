@@ -92,44 +92,40 @@
         }
 
         .image-text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            background-color: #efebe9; /* Lighter beige */
-            padding: 50px;
-        }
-        .image-text {
           display: flex;
-          align-items: flex-start;  /* align items at the top */
-          gap: 40px;                /* space between image and text */
+          align-items: flex-start;
+          gap: 40px;
           background-color: #efebe9;
           padding: 50px;
         }
 
         .image-text img {
-          max-width: 40%;           /* image takes ~40% width */
+          max-width: 40%;
           height: auto;
           border-radius: 8px;
         }
 
         .image-text .text-content {
-          flex: 1;                  /* text takes the remaining space */
+          flex: 1;
           display: flex;
-          flex-direction: column;   /* stack heading, paragraph, and list */
+          flex-direction: column;
           justify-content: center;
+          text-align: center;  /* centers h2 and p */
         }
 
         .image-text .text-content h2,
-        .image-text .text-content p,
-        .image-text .text-content ul {
+        .image-text .text-content p {
           margin-bottom: 20px;
         }
 
         .image-text ul {
-          list-style-position: inside;
-          padding-left: 0;
+          list-style-position: outside;
+          padding-left: 1.5rem;
+          margin: 0 auto;
+          text-align: left;
+          display: inline-block;
         }
+
 
         /*.image-text img {
             max-width: 800px;
@@ -205,20 +201,20 @@
     </section>
 
     <section class="image-text">
-      <img src="DSC_0250_no_name.jpg" alt="Theatre Production Image">
-      <div class="text-content">
-        <h2>Våra engagemang just nu</h2>
-        <p>
-          Vi hos AmatörKreatörerna jobbar ständigt med våra medlemmar för att hitta och utforska vad som driver eran kreativitet. Här är en lista på de projekten vi håller på med just nu:
-        </p>
-        <ul>
-          <li>Hamlet</li>
-          <li>Romeo and Juliet</li>
-          <li>A Midsummer Night's Dream</li>
-          <li>Original Production: The Lost Voices</li>
-        </ul>
-      </div>
-    </section>
+          <img src="DSC_0250_no_name.jpg" alt="Theatre Production Image">
+          <div class="text-content">
+            <h2>Våra engagemang just nu</h2>
+            <p>
+              Vi hos AmatörKreatörerna jobbar ständigt med våra medlemmar för att hitta och utforska vad som driver eran kreativitet. Här är en lista på de projekten vi håller på med just nu:
+            </p>
+            <ul>
+              <li>Hamlet</li>
+              <li>Romeo and Juliet</li>
+              <li>A Midsummer Night's Dream</li>
+              <li>Original Production: The Lost Voices</li>
+            </ul>
+          </div>
+        </section>
 
     <section class="contact">
         <h2>Kontakt</h2>
@@ -249,6 +245,7 @@
 
 </body>
 </html>
+
 
 
 
