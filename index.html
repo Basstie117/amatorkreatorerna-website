@@ -128,60 +128,17 @@
         /* Paragraph: align to the bullet DOTS */
         .image-text .text-content p {
           text-align: left;
-          padding-left: var(--bullet-gutter);
+          padding-left: 0;
           margin: 0 0 14px 0;
         }
 
         /* List: bullets outside + same gutter */
         .image-text .text-content ul {
-          list-style-position: outside;
-          padding-left: var(--bullet-gutter);
+          list-style-position: inside;
+          padding-left: 0;
           margin: 0; /* no extra shift */
           text-align: left;
         }
-
-        
-        /*.image-text .text-content {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;   /* center the whole column 
-          max-width: 600px;      /* keeps content in a neat column 
-          margin: 0 auto;        /* centers the column itself 
-        }
-
-        .image-text .text-content h2 {
-          text-align: center;    /* centered heading 
-          width: 100%;
-        }
-
-        .image-text .text-content p {
-          text-align: left;      /* left-aligned paragraph 
-          width: 100%;
-        }
-
-        .image-text ul {
-          list-style-position: outside;
-          padding-left: 1.5rem;
-          margin: 0 auto;
-          text-align: left;
-          display: inline-block;
-        }
-
-
-        /*.image-text img {
-            max-width: 800px;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .image-text p {
-            margin-top: 20px;
-            max-width: 800px;
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: #4e342e; /* Medium brown 
-        }*/
 
         .contact {
             background-color: #795548; /* Dark brown */
@@ -235,7 +192,7 @@
         }
     </style>
 </head>
-    
+
 <body>
     <header class="fixed-header"> 
         <img src="logo.png" alt="Theatre Logo">
@@ -276,7 +233,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 AmatörKreatöerna. All rights reserved.</p>
+        <p> 2025 AmatörKreatöerna</p>
     </footer>
 
     <script>
@@ -290,12 +247,8 @@
     });
     </script>
 
-    <script src="script.js"></script>
 </body>
 </html>
-
-
-
 
 
 
