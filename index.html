@@ -14,25 +14,34 @@
         }
 
         .fixed-header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background-color: #8d6e63; /* Light brown */
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
-          padding: 20px 0;
-          transition: all 0.3s ease;
-          z-index: 1000;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           background-color: #8d6e63; /* Light brown */
+           color: white;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 12px;
+           flex-wrap: wrap; /* allows logo + title to break onto two lines */
+           padding: 12px 0;
+           transition: all 0.3s ease;
+           z-index: 1000;
+           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .fixed-header h1 {
+          font-size: 2em;        /* desktop size */
+          margin: 0;
+          white-space: normal;   /* allow wrapping instead of forcing in one line */
+          text-align: center;
         }
         
         .fixed-header img.logo {
-          height: 100px;
-          transition: opacity 0.3s ease;
+          max-height: 60px;   /* shrink for desktop */
+          height: auto;
+          width: auto;
         }
         
         .fixed-header.shrink {
@@ -199,6 +208,19 @@
         }
 
         @media (max-width: 768px) {
+          .fixed-header {
+            flex-direction: column; /* stack vertically on very small screens */
+          }
+            
+          .fixed-header img.logo {
+            max-height: 40px; /* smaller logo on mobile */
+          }
+            
+          .fixed-header h1 {
+            font-size: 1.4em;    /* smaller title on mobile */
+            line-height: 1.2;    /* tighter spacing */
+          }    
+            
           .image-text {
             flex-direction: column;
             align-items: center;
@@ -284,6 +306,7 @@
 
 </body>
 </html>
+
 
 
 
