@@ -140,9 +140,9 @@
           text-align: left;
         }
 
-        .contact {
-            background-color: #795548; /* Dark brown */
-            color: #f5f5dc; /* Beige */
+       /* .contact {
+            background-color: #795548; /* Dark brown 
+            color: #f5f5dc; /* Beige 
             text-align: center;
             padding: 40px;
         }
@@ -153,7 +153,7 @@
         }
 
         .contact a {
-            color: #d7ccc8; /* Light beige */
+            color: #d7ccc8; /* Light beige 
             text-decoration: none;
             font-size: 1.2em;
         }
@@ -163,12 +163,56 @@
         }
 
         .joinus {
-            background-color: #d7ccc8; /* Light beige */
-            color: #3e2723; /* Dark brown */
+            background-color: #d7ccc8; /* Light beige 
+            color: #3e2723; /* Dark brown 
             text-align: center;
             align-items: center;
+        } */
+
+        /* Parent lays out children side-by-side on desktop */
+        .info-pair {
+          display: flex;
+          gap: 24px;
+          align-items: stretch;
+          margin: 40px 0;
         }
 
+        /* Each child takes equal width, with a nice card look */
+        .info-pair > * {
+          flex: 1 1 0;
+          padding: 28px;
+          border-radius: 14px;
+          box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        /* Keep your brown/beige palette */
+        .contact {
+          background: #795548;     /* dark brown */
+          color: #f5f5dc;          /* beige text */
+        }
+        
+        .joinus {
+          background: #795548;     /* dark brown */
+          color: #f5f5dc;          /* beige text */
+          text-align: center;
+          align-items: center;
+        }
+
+        /* Optional: unified heading style inside pair */
+        .info-pair h2 {
+          margin-top: 0;
+          text-align: center;
+        }
+
+        /* Simple button style */
+        .btn {
+          display: inline-block;
+          padding: 10px 16px;
+          border-radius: 999px;
+          background: #8d6e63; /* light brown */
+          color: #fff;
+          text-decoration: none;
+        }
 
         .social {
             text-align: center;
@@ -196,6 +240,10 @@
 
           .image-text .text-content {
             text-align: center;
+          }
+
+          .info-pair {
+            flex-direction: column;
           }
         }
     </style>
@@ -265,6 +313,7 @@
 
 </body>
 </html>
+
 
 
 
