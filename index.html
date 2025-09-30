@@ -18,7 +18,7 @@
            top: 0;
            left: 0;
            width: 100%;
-           background-color: #71167B; /* Purple */
+           background-color: #F0F0F0; /* Purple */
            color: white;
            display: flex;
            align-items: center;
@@ -36,6 +36,14 @@
           margin: 0;
           white-space: normal;   /* allow wrapping instead of forcing in one line */
           text-align: center;
+        }
+
+        .brand-first {
+            color: #68478D;  /* Lila 7678 C */
+    	}
+
+        .brand-second {
+            color: #68478D;  /* Pantone Pink C */
         }
         
         .fixed-header img.logo {
@@ -75,7 +83,7 @@
         }
 
         .welcome {
-            background-color: #FFDD9E; /* Light beige */
+            background-color: #FDD26E; /* Light beige */
             align-items: center; /* centers items horizontally */
             justify-content: center; /* vertical centering if you have fixed height */
             text-align: center;
@@ -245,7 +253,10 @@
 <body>
     <header class="fixed-header"> 
         <img src="AK_logo.png" alt="Theatre Logo">
-        <h1>AmatörKreatörerna</h1>
+        <h1>
+          <span class="brand-first">Amatör</span>
+          <span class="brand-second">Kreatörerna</span>
+        </h1>
     </header>
 
     <section class="welcome pop-section">
@@ -306,6 +317,7 @@
 
 </body>
 </html>
+
 
 
 
