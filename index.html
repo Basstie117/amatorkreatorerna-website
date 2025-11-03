@@ -37,7 +37,8 @@
         .fixed-header .header-inner {
           display: flex;
           align-items: center;
-          justify-content: space-between; /* logo - title - nav spacing */
+          justify-content: center; /* centers all items */
+		  gap: 20px; /* controls spacing between logo, title, nav */
           width: 90%;
           max-width: 1200px;              /* keeps everything nicely centered on big screens */
         }
@@ -45,13 +46,11 @@
 		/* Optional small spacing */
 		.fixed-header .logo {
   		  max-height: 60px;
-		  margin-right: 80px;
 		}
 
         .fixed-header nav {
           display: flex;
           gap: 16px;
-		  margin-left: 80px;
         }
 
         .fixed-header .nav-link {
@@ -332,7 +331,7 @@
           .image-text {
 		    display: flex;
             flex-direction: column;
-			gap: 20px;
+			gap: 5px;
             align-items: center;
           }
 
@@ -348,7 +347,7 @@
 			text-align: center;
 			display: flex;
 			flex-direction: column;
-			gap: 16px;
+			gap: 5px;
           }
 
           .info-pair {
@@ -461,6 +460,7 @@
 
 </body>
 </html>
+
 
 
 
