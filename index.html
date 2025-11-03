@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Beige - General background colour */
+            background-color: #F5F5DC; /* Beige - General background colour */
             color: #FFF; /* Dark brown */
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
            top: 0;
            left: 0;
            width: 100%;
-           background-color: #8d6e63; /* Pantone Pink C */
+           background-color: #4E342E; /* Pantone Pink C */
            color: #FFF;
            display: flex;
            align-items: center;
@@ -124,14 +124,14 @@
           display: flex;
           flex-direction: column;
           align-items: stretch; /* so children use the same left edge */
-          colour: #68478D;
+          colour: #000;
         }
 
         /* Center the heading only */
         .image-text .text-content h2 {
           text-align: left;
           margin-bottom: 16px;
-          colour: #68478D;
+          colour: #000;
         }
 
         /* Use a shared gutter for dots */
@@ -144,7 +144,7 @@
           text-align: left;
           padding-left: 0;
           margin: 0 0 14px 0;
-          colour: #68478D;
+          colour: #000;
         }
 
         /* List: bullets outside + same gutter */
@@ -153,7 +153,7 @@
           padding-left: 0;
           margin: 0; /* no extra shift */
           text-align: left;
-          colour: #68478D;
+          colour: #000;
         }
         
         /* Parent lays out children side-by-side on desktop */
@@ -174,13 +174,13 @@
 
         /* Keep your brown/beige palette */
         .contact {
-          background: #68478D;     /* Lila 7678 C */
-          color: #f0f0f0;          /* Grå vit */
+          background: #8D6E63;     /* Lila 7678 C */
+          color: #FFF;          /* Grå vit */
         }
         
         .joinus {
-          background: #68478D;     /* Lila 7678 C */
-          color: #f0f0f0;          /* Grå vit */
+          background: #8D6E63;     /* Lila 7678 C */
+          color: #FFF;          /* Grå vit */
           text-align: center;
           align-items: center;
         }
@@ -189,7 +189,7 @@
         .info-pair h2 {
           margin-top: 0;
           text-align: center;
-          color: #f0f0f0;
+          color: #FFF;
         }
 
         /* Simple button style */
@@ -205,7 +205,7 @@
         .social {
             text-align: center;
             align-items: center;
-            color: #68478D;
+            color: #000;
         }
 
         footer {
@@ -267,8 +267,29 @@
         <h2>En resa till hjärtat av teater!</h2>
         <p>Vi bjuder in er till att utforska ert intresse för att stå på scen, musicera, skriva manus, röstskådespela och mycket mera! Vår förening sammanför den passion och kreativitet som den vardagliga versionen av oss drömmer om att utforska. Var en del av vår produktion här hos AmatörKreatörerna. </p>
     </section>
+    
+        <section class="image-text pop-section">
+          <div class="image-collage">
+            <img src="img1.jpg" alt="Theatre Production Image 1">
+            <img src="img2.jpg" alt="Theatre Production Image 2">
+            <img src="img3.jpg" alt="Theatre Production Image 3">
+          </div>
 
-    <section class="image-text pop-section">
+          <div class="text-content">
+            <h2>Våra engagemang just nu</h2>
+            <p>
+              Vi hos AmatörKreatörerna jobbar ständigt med våra medlemmar för att hitta och utforska vad som driver eran kreativitet. Här är en lista på de projekten vi håller på med just nu:
+            </p>
+            <ul>
+              <li>Radioteater</li>
+              <li>Julshow</li>
+            </ul>
+            <!-- New image below text -->
+            <img src="img4.jpg" alt="Behind the scenes" class="extra-image">
+          </div>
+        </section>
+    
+<!--    <section class="image-text pop-section">
           <img src="DSC_0250_no_name.jpg" alt="Theatre Production Image">
           <div class="text-content">
             <h2>Våra projekt just nu</h2>
@@ -319,6 +340,7 @@
 
 </body>
 </html>
+
 
 
 
