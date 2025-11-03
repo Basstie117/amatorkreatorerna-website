@@ -107,36 +107,7 @@
         }
 
         /* ================================= IMAGE TEXT ================================= */
-.image-collage {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-}
 
-.image-collage img {
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.image-collage img:last-child {
-  grid-column: span 2;
-}
-
-/* Text + extra image on the right */
-.text-content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.text-content .extra-image {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 10px;
-  object-fit: cover;
-}
-        
         .image-text {
           display: grid;
           align-items: start;
@@ -146,6 +117,44 @@
           color: #000000;
           grid-template-columns: 1fr 1fr; /* left and right halves */
           margin: 60px 0;
+        }
+     
+        .image-collage {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 10px;
+        }
+
+        .image-collage img {
+          width: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+        }
+
+        .image-collage img:last-child {
+          grid-column: span 2;
+        }
+
+/* Text + extra image on the right */
+        .text-content {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .text-content .extra-image {
+          width: 100%;
+          border-radius: 8px;
+          margin-top: 10px;
+          object-fit: cover;
+        }
+        
+        .slice {
+          width: 100%;
+          height: 200px;         /* controls how tall the visible slice is */
+          object-fit: cover;     /* zooms & crops to fill the box */
+          object-position: center top; /* choose which part to show (e.g., top, bottom, 20% 80%) */
+          border-radius: 8px;
         }
 
         /*
@@ -331,7 +340,7 @@
               <li>Julshow</li>
             </ul>
             <!-- New image below text -->
-            <img src="20251018_133616.png" alt="Behind the scenes" class="extra-image">
+            <img src="20251018_133616.png" alt="Behind the scenes" class="extra-image slice">
           </div>
         </section>
     
@@ -386,6 +395,7 @@
 
 </body>
 </html>
+
 
 
 
