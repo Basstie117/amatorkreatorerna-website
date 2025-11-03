@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -5,7 +6,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Om oss – AmatörKreatörerna</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .fixed-header {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           background-color: #4E342E; /* Pantone Pink C */
+           color: #FFF;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 20px;
+           flex-wrap: wrap; /* allows logo + title to break onto two lines */
+           padding: 10px 20px;
+           transition: all 0.3s ease;
+           z-index: 1000;
+           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Inner wrapper keeps content centered and limited in width */
+        .fixed-header .header-inner {
+          display: flex;
+          align-items: center;
+          justify-content: center; /* centers all items */
+		  gap: 20px; /* controls spacing between logo, title, nav */
+          width: 90%;
+          max-width: 1200px;              /* keeps everything nicely centered on big screens */
+        }
+
+		/* Optional small spacing */
+		.fixed-header .logo {
+  		  max-height: 60px;
+		}
+
+        .fixed-header nav {
+          display: flex;
+          gap: 16px;
+        }
+
+        .fixed-header .nav-link {
+          color: #F5F5DC;
+          text-decoration: none;
+          font-size: 1.1em;
+          font-weight: 500;
+          transition: color 0.3s ease;
+        }
+
+        .fixed-header .nav-link:hover {
+          color: #D7CCC8; /* lighter beige on hover */
+        }
+
+        .fixed-header h1 {
+          font-size: 2em;        /* desktop size */
+          margin: 0;
+          white-space: normal;   /* allow wrapping instead of forcing in one line */
+          text-align: center;
+        }
+        
+        .fixed-header img.logo {
+          max-height: 60px;   /* shrink for desktop */
+          height: auto;
+          width: auto;
+        }
+        
+        .fixed-header.shrink {
+          padding: 5px 0; /* Shrinks header height */
+        }
+        
+        .fixed-header.shrink img.logo {
+          opacity: 0;
+          pointer-events: none;
+          height: 0;
+        }
+  </style>
 </head>
+
+  
 <body>
   <header class="fixed-header">
     <img src="logo.png" alt="AmatörKreatörerna Logo" class="logo">
