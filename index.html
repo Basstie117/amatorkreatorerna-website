@@ -24,13 +24,25 @@
            color: #FFF;
            display: flex;
            align-items: center;
-           justify-content: center;
+           justify-content: space-between;
            gap: 20px;
            flex-wrap: wrap; /* allows logo + title to break onto two lines */
-           padding: 20px 0;
+           padding: 10px 20px;
            transition: all 0.3s ease;
            z-index: 1000;
            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .fixed-header .nav-link {
+          color: #F5F5DC;
+          text-decoration: none;
+          font-size: 1.1em;
+          font-weight: 500;
+          transition: color 0.3s ease;
+        }
+
+        .fixed-header .nav-link:hover {
+          color: #d7ccc8; /* lighter beige on hover */
         }
 
         .fixed-header h1 {
@@ -316,12 +328,20 @@
     </style>
 </head>
 
+<!--==================================== HTML ====================================-->
+<!--==================================== HTML ====================================-->
+<!--==================================== HTML ====================================-->
+    
 <body>
     <header class="fixed-header"> 
-        <img src="AK_logo.png" alt="Theatre Logo">
+        <img src="AK_logo.png" alt="AmatörKreatörerna Logo" class="logo">
         <h1>
           AmatörKreatörerna
         </h1>
+
+        <nav>
+            <a href="about.html" class="nav-link">Om oss</a>
+        </nav>
     </header>
 
     <section class="welcome pop-section">
@@ -337,7 +357,7 @@
           <div class="text-content">
             <h2>Våra engagemang just nu</h2>
             <p>
-              Vi hos AmatörKreatörerna jobbar ständigt med våra medlemmar för att hitta och utforska vad som driver eran kreativitet. Här är en lista på de projekten vi håller på med just nu:
+              Vi hos AmatörKreatörerna tillsammans med våra medlemmar skapar och utforskar varandras intressen för att hitta vad som driver våran kreativitet. Här är en lista på de projekten vi håller på med just nu:
             </p>
             <ul>
               <li>Radioteater</li>
@@ -399,6 +419,7 @@
 
 </body>
 </html>
+
 
 
 
