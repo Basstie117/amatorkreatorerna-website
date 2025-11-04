@@ -1,36 +1,38 @@
 
 const CALENDAR_ID = encodeURIComponent("amatorkreatorerna@gmail.com");
-const API_KEY = AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ;
+const API_KEY = "AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ";
 
 let events = {};
 
 async function loadEvents() {
-  const timeMin = new Date().toISOString();
-  const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
+  try {
+    const timeMin = new Date().toISOString();
+    const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
 
-  const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
 
-  const response = await fetch(url);
-  const data = await response.json();
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Google API returned " + response.status);
 
-  if (data.items) {
-    data.items.forEach(event => {
-      const date = event.start.date || event.start.dateTime.split("T")[0];
-      if (!events[date]) events[date] = [];
+    const data = await response.json();
+    console.log("Calendar data:", data);
 
-      // Assign colors based on keywords in event titles
-      let type = "yellow"; // default
-      const name = event.summary.toLowerCase();
+    if (data.items) {
+      data.items.forEach(event => {
+        const date = event.start.date || event.start.dateTime.split("T")[0];
+        if (!events[date]) events[date] = [];
 
-      if (name.includes("föreställning") || name.includes("show")) type = "red";
-      else if (name.includes("repetition") || name.includes("övning")) type = "blue";
-      else if (name.includes("möte") || name.includes("träff")) type = "yellow";
+        // Use Google’s event color if available
+        const color = event.colorId || "7";
+        events[date].push({ color, name: event.summary });
+      });
+    }
 
-      events[date].push({ type, name: event.summary });
-    });
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  } catch (err) {
+    console.error("Calendar load error:", err);
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
   }
-
-  generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
 }
 
 const calendar = document.getElementById("calendar");
