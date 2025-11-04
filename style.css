@@ -318,7 +318,7 @@
 
         /* ========================================================================= */
         /* ===== CALENDAR                                             CALENDAR ===== */
-        /* ========================================================================= 
+        /* ========================================================================= */
 		
 		#calendar {
 		  display: grid;
@@ -333,7 +333,7 @@
 		}
 		
 		.day {
-		  background-color: #4E342E; /* beige 
+		  background-color: #4E342E; /* beige */
 		  border-radius: 8px;
 		  padding: 15px;
 		  min-height: 80px;
@@ -365,11 +365,11 @@
 		  border-radius: 50%;
 		}
 		
-		.event-dot.red { background-color: #e53935; }    /* show 
-		.event-dot.blue { background-color: #1e88e5; }   /* learning 
-		.event-dot.yellow { background-color: #fdd835; } /* meetup 
+		.event-dot.red { background-color: #e53935; }    /* show */
+		.event-dot.blue { background-color: #1e88e5; }   /* learning */
+		.event-dot.yellow { background-color: #fdd835; } /* meetup */
 		
-		/* Modal Styling 
+		/* Modal Styling */
 		.modal {
 		  display: none;
 		  position: fixed;
