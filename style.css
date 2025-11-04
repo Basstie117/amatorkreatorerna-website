@@ -93,6 +93,8 @@
         
         .fixed-header.shrink {
           padding: 5px 0; /* Shrinks header height */
+		  font-size: 0.9em;
+	      height: 60px;
         }
         
         .fixed-header.shrink img.logo {
@@ -100,18 +102,6 @@
           pointer-events: none;
           height: 0;
         }
-        
-       /*
-        header img {
-            max-height: 80px; /* Adjust this as needed 
-            margin-right: 20px;
-        } 
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-align: center;
-        } */
 
         section {
             padding: 40px 20px;
@@ -120,6 +110,65 @@
         section:first-of-type {
           padding-top: 120px; /* Adjust depending on header size */
         }
+
+        /* ================================= INTRO ================================= */
+        /* ===== PROJECTS                                             PROJECTS ===== */
+        /* ================================= INTRO ================================= */
+
+		.intro {
+			margin-top: 120px; 
+			text-align: center;
+		}
+
+	    .project-page {
+  			display: flex;
+  			flex-direction: column;
+  			gap: 60px;
+  			padding: 100px 5% 60px; /* add top padding to avoid header overlap */
+		}
+
+		/* Each section: collage + text in columns */
+		.project-section {
+  			display: grid;
+  			grid-template-columns: 1fr 1fr;
+  			gap: 40px;
+  			align-items: center;
+		}
+
+		/* Collage layout */
+		.project-collage {
+  			display: grid;
+  			grid-template-columns: repeat(2, 1fr);
+  			grid-gap: 10px;
+		}
+
+		.project-collage img {
+  			width: 100%;
+  			border-radius: 10px;
+  			object-fit: cover;
+		}
+
+		/* Make last image span two columns for asymmetry */
+		.project-collage img:last-child {
+  			grid-column: span 2;
+		}
+
+		/* Text styling */
+		.project-text h2 {
+  			color: #5d4037; /* dark brown */
+  			font-size: 1.8em;
+  			margin-bottom: 10px;
+		}
+
+		.project-text p {
+  			color: #3e2723;
+  			font-size: 1.1em;
+  			line-height: 1.5;
+  			background-color: #f5f5dc; /* beige background */
+  			padding: 15px;
+  			border-radius: 8px;
+  			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+		}
 
         /* ================================= WELCOME ================================= */
         /* =====                                                                 ===== */
@@ -163,7 +212,7 @@
           gap: 40px;
           background-color: #f5f5dc;
           padding: 50px;
-          color: #000000;
+          color: #000;
           grid-template-columns: 1fr 1fr; /* left and right halves */
           margin: 60px 0;
         }
@@ -206,50 +255,9 @@
           border-radius: 8px;
         }
 
-        /*
-        .image-text img {
-          max-width: 80%;
-          height: auto;
-          border-radius: 8px;
-        }
-
-        /* Column wrapper 
-        .image-text .text-content {
-          max-width: 800px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: stretch; /* so children use the same left edge 
-          colour: #000;
-        }
-
-        /* Center the heading only 
-        .image-text .text-content h2 {
-          text-align: left;
-          margin-bottom: 16px;
-          colour: #000;
-        }
-
         /* Use a shared gutter for dots */
         :root {
           --bullet-gutter: 1.5rem; /* tweak to taste */
-        }
-
-        /* Paragraph: align to the bullet DOTS 
-        .image-text .text-content p {
-          text-align: left;
-          padding-left: 0;
-          margin: 0 0 14px 0;
-          colour: #000;
-        }
-
-        /* List: bullets outside + same gutter 
-        .image-text .text-content ul {
-          list-style-position: inside;
-          padding-left: 0;
-          margin: 0; /* no extra shift 
-          text-align: left;
-          colour: #000;
         }
         
         /* Parent lays out children side-by-side on desktop */
@@ -371,4 +379,20 @@
           .text-content .extra-image {
             margin-top: 16px;
           }
+
+			.intro {
+			margin-top: 120px;
+		  }
+
+		  .project-section {
+    		grid-template-columns: 1fr; /* single column */
+  		  }
+
+  		  .project-collage img:last-child {
+    		grid-column: auto;
+  		  }
+
+  		  .project-text {
+    		margin-top: 20px;
+  		  }
         }
