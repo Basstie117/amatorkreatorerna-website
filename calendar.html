@@ -26,25 +26,26 @@
     </div>
   </header>
 
-  <main class="calendar-page">
-  <h2>Kalender</h2>
+   <main class="calendar-container">
+    <h2>Vår Kalender</h2>
+    <div class="calendar-nav">
+      <button id="prevMonth">←</button>
+      <h3 id="monthYear"></h3>
+      <button id="nextMonth">→</button>
+    </div>
 
-  <div class="calendar-header">
-    <button id="prev-month">❮</button>
-    <span id="month-year"></span>
-    <button id="next-month">❯</button>
-  </div>
+    <div id="calendar"></div>
+  </main>
 
-  <div id="calendar"></div>
-</main>
-  
-  <!-- Popup Modal -->
-  <div id="event-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3 id="event-date"></h3>
-      <ul id="event-list"></ul>
+  <!-- Popup for event details -->
+  <div id="eventPopup" class="popup hidden">
+    <div class="popup-content">
+      <span id="closePopup">&times;</span>
+      <h3 id="popupDate"></h3>
+      <ul id="eventList"></ul>
     </div>
   </div>
+
+  <script src="calendar.js"></script>
 </body>
 </html>
