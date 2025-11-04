@@ -27,32 +27,38 @@
 		}
 	  
     	.fixed-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #4E342E; /* Pantone Pink C */
-            color: #FFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap; /* allows logo + title to break onto two lines */
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+  			position: fixed;
+  			top: 0;
+  			left: 0;
+  			right: 0;     /* ensures full-width alignment on all devices */
+  			width: 100%;
+  			background-color: #4E342E;
+  			color: #FFF;
+  			display: flex;
+  			align-items: center;
+  			justify-content: center;
+  			gap: 20px;
+  			flex-wrap: wrap;
+  			padding: 10px 20px;
+  			box-sizing: border-box;
+  			transition: height 0.3s ease, padding 0.3s ease, background-color 0.3s ease;
+  			z-index: 1000;
+  			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  			overflow-x: hidden;       /* prevents any micro horizontal scrollbars */
+		}
 
         /* Inner wrapper keeps content centered and limited in width */
         .fixed-header .header-inner {
-          display: flex;
-          align-items: center;  /* aligns all items at bottom edge */
-          justify-content: center; /* centers all items */
-		  gap: 20px; /* controls spacing between logo, title, nav */
-          width: 90%;
-          max-width: 1200px;              /* keeps everything nicely centered on big screens */
-        }
+  			display: flex;
+  			align-items: flex-end;
+  			justify-content: center;
+  			gap: 20px;
+  			width: 100%;
+  			max-width: 1200px;
+  			margin: 0 auto;
+  			box-sizing: border-box;
+  			padding: 0 10px;          /* ensures equal spacing on both sides */
+		}
 
 		/* Optional small spacing */
 		.fixed-header .logo {
@@ -94,7 +100,9 @@
         }
         
         .fixed-header.shrink {
+		  height: 60px;
           padding: 5px 0; /* Shrinks header height */
+		  font-size: 0.9em;
         }
         
         .fixed-header.shrink img.logo {
@@ -185,6 +193,7 @@
 		  .fixed-header .header-inner {
     		flex-direction: column;
     		gap: 8px;
+			width: 100%;
   		  }
             
           .fixed-header img.logo {
