@@ -159,16 +159,16 @@
 
 		/* Text styling */
 		.project-text h2 {
-  			color: #5d4037; /* dark brown */
+  			color: #5D4037; /* dark brown */
   			font-size: 1.8em;
   			margin-bottom: 10px;
 		}
 
 		.project-text p {
-  			color: #3e2723;
+  			color: #3E2723;
   			font-size: 1.1em;
   			line-height: 1.5;
-  			background-color: #f5f5dc; /* beige background */
+  			background-color: #F5F5DC; /* beige background */
   			padding: 15px;
   			border-radius: 8px;
   			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -179,7 +179,7 @@
         /* ================================= WELCOME ================================= */
 
         .welcome {
-            background-color: #f5f5dc; /* Light beige */
+            background-color: #F5F5DC; /* Light beige */
             align-items: center; /* centers items horizontally */
             justify-content: center; /* vertical centering if you have fixed height */
             text-align: center;
@@ -189,7 +189,7 @@
         .welcome h2 {
             font-size: 2.5em;
             margin-bottom: 20px;
-            color: #000000;
+            color: #000;
         }
 
         .welcome p {
@@ -214,7 +214,7 @@
           display: grid;
           align-items: end;
           gap: 40px;
-          background-color: #f5f5dc;
+          background-color: #F5F5DC;
           padding: 50px;
           color: #000;
           grid-template-columns: 1fr 1fr; /* left and right halves */
@@ -310,19 +310,20 @@
           text-decoration: none;
         }
 
+        /* ========================================================================= */
+        /* ===== CALENDAR                                             CALENDAR ===== */
+        /* ========================================================================= */
+
 		/* Calendar Page Styling */
 		.calendar-page {
 		  padding: 120px 5% 60px;
 		  text-align: center;
 		}
-
-        /* ========================================================================= */
-        /* ===== CALENDAR                                             CALENDAR ===== */
-        /* ========================================================================= */
 		
 		.calendar-container {
 		  margin-top: 120px;
 		  text-align: center;
+		  color: #000;
 		}
 
 		.calendar-container h2 {
@@ -335,6 +336,7 @@
 		  align-items: center;
 		  gap: 20px;
 		  margin-bottom: 20px;
+		  color: #000;
 		}
 
 		.calendar-nav h3 {
