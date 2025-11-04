@@ -1,5 +1,5 @@
 
-const CALENDAR_ID = amatorkreatorerna@gmail.com;
+const CALENDAR_ID = encodeURIComponent("amatorkreatorerna@gmail.com");
 const API_KEY = AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ;
 
 let events = {};
