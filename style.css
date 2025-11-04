@@ -377,6 +377,7 @@
 		
 		.day .date {
 		  font-weight: bold;
+		  color: #F5F5DC;
 		}
 		
 		.day .dots {
@@ -418,11 +419,11 @@
 		}
 
 		.popup-content h3 {
-		  color: #4E342E;
+		  color: #000;
 		}
 
 		.popup-content ul {
-		  color: #4E342E;
+		  color: #000;
 		}
 		
 		#closePopup {
