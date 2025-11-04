@@ -110,6 +110,56 @@
           padding-top: 120px; /* Adjust depending on header size */
 		}
 
+	    .project-page {
+  			display: flex;
+  			flex-direction: column;
+  			gap: 60px;
+  			padding: 100px 5% 60px; /* add top padding to avoid header overlap */
+		}
+
+		/* Each section: collage + text in columns */
+		.project-section {
+  			display: grid;
+  			grid-template-columns: 1fr 1fr;
+  			gap: 40px;
+  			align-items: center;
+		}
+
+		/* Collage layout */
+		.project-collage {
+  			display: grid;
+  			grid-template-columns: repeat(2, 1fr);
+  			grid-gap: 10px;
+		}
+
+		.project-collage img {
+  			width: 100%;
+  			border-radius: 10px;
+  			object-fit: cover;
+		}
+
+		/* Make last image span two columns for asymmetry */
+		.project-collage img:last-child {
+  			grid-column: span 2;
+		}
+
+		/* Text styling */
+		.project-text h2 {
+  			color: #5d4037; /* dark brown */
+  			font-size: 1.8em;
+  			margin-bottom: 10px;
+		}
+
+		.project-text p {
+  			color: #3e2723;
+  			font-size: 1.1em;
+  			line-height: 1.5;
+  			background-color: #f5f5dc; /* beige background */
+  			padding: 15px;
+  			border-radius: 8px;
+  			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+		}
+
 	    footer {
             background-color: #4E342E; /* Pantone Pink C */
             color: #FFF;
@@ -117,6 +167,12 @@
             padding: 20px;
             font-size: 0.9em;
         }
+
+		/* Mobile layout: stack vertically */
+		@media (max-width: 768px) {
+  			
+		}
+
 
 			@media (max-width: 768px) {
           .fixed-header {
@@ -136,6 +192,18 @@
             font-size: 1.4em;    /* smaller title on mobile */
             line-height: 1.2;    /* tighter spacing */
           }
+
+		  .project-section {
+    		grid-template-columns: 1fr; /* single column */
+  		  }
+
+  		  .project-collage img:last-child {
+    		grid-column: auto;
+  		  }
+
+  		  .project-text {
+    		margin-top: 20px;
+  		  }
         }
   </style>
 </head>
@@ -157,10 +225,42 @@
         </div>
     </header>
 
-  <main style="margin-top: 120px; text-align: center;">
-    <h2>Våra nuvarande projekt</h2>
-    <p>Projekt ligger här btw</p>
-  </main>
+	<main style="margin-top: 120px; text-align: center;">
+    	<h2>Våra nuvarande projekt</h2>
+    	<p>Projekt ligger här btw</p>
+  	</main>
+
+	<main class="projekt-page">
+  		<!-- Section 1 -->
+  		<section class="project-section">
+    		<div class="project-collage">
+      			<img src="DSC_0035.JPG" alt="Group photo 1">
+      			<img src="DSC_0035.JPG" alt="Rehearsal">
+      			<img src="DSC_0035.JPG" alt="Stage lighting">
+    		</div>
+    		<div class="project-text">
+      			<h2>Julshow</h2>
+      			<p>
+        			Julshow text goes here
+      			</p>
+    	  </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="project-section">
+    <div class="project-collage">
+      <img src="DSC_0035.JPG" alt="Stage image 1">
+      <img src="DSC_0035.JPG" alt="Stage image 2">
+      <img src="DSC_0035.JPG" alt="Stage image 3">
+    </div>
+    <div class="project-text">
+      <h2>Radioteater</h2>
+      <p>
+        Radioteater text goes here
+      </p>
+    </div>
+  </section>
+</main>
 
 	<footer>
         <p> 2025 AmatörKreatöerna</p>
