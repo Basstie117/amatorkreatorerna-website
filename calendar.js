@@ -12,21 +12,32 @@ const events = {
 };
 
 const calendar = document.getElementById("calendar");
+const monthYear = document.getElementById("month-year");
 const modal = document.getElementById("event-modal");
 const closeModal = document.querySelector(".close");
 const eventDate = document.getElementById("event-date");
 const eventList = document.getElementById("event-list");
+const prevBtn = document.getElementById("prev-month");
+const nextBtn = document.getElementById("next-month");
+
+let currentDate = new Date();
 
 function generateCalendar(year, month) {
   calendar.innerHTML = "";
+
   const firstDay = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+  const monthName = firstDay.toLocaleString("sv-SE", { month: "long" });
+  monthYear.textContent = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)} ${year}`;
+
+  // Offset for first day (Sunday = 0)
   for (let i = 0; i < firstDay.getDay(); i++) {
     const empty = document.createElement("div");
     calendar.appendChild(empty);
   }
 
+  // Add each day
   for (let day = 1; day <= daysInMonth; day++) {
     const date = new Date(year, month, day);
     const dateString = date.toISOString().split("T")[0];
@@ -51,6 +62,7 @@ function generateCalendar(year, month) {
   }
 }
 
+// Modal Handling
 function openModal(dateString) {
   eventDate.textContent = dateString;
   eventList.innerHTML = "";
@@ -67,5 +79,16 @@ window.addEventListener("click", e => {
   if (e.target === modal) modal.style.display = "none";
 });
 
-const today = new Date();
-generateCalendar(today.getFullYear(), today.getMonth());
+// Navigation
+prevBtn.addEventListener("click", () => {
+  currentDate.setMonth(currentDate.getMonth() - 1);
+  generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+});
+
+nextBtn.addEventListener("click", () => {
+  currentDate.setMonth(currentDate.getMonth() + 1);
+  generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+});
+
+// Init
+generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
