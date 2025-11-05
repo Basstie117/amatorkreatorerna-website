@@ -1,5 +1,5 @@
 
-const CALENDAR_ID = encodeURIComponent("amatorkreatorerna@gmail.com");
+const CALENDAR_ID = encodeURIComponent("97d03342ebc889cac9c2b8aea1967a939f035aa81596db26ac7a7f56ac1ef1e2@group.calendar.google.com");
 const API_KEY = "AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ";
 
 let currentDate = new Date();
