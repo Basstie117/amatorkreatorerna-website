@@ -4,9 +4,10 @@ const API_KEY = "AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ";
 
 let currentDate = new Date();
 let events = {};
-
 let colorMap = {};
+let lastFetchTime = 0; // track when data was last fetched
 
+// === Load Google’s event colours ===
 async function loadColors() {
   const url = `https://www.googleapis.com/calendar/v3/colors?key=${API_KEY}`;
   const response = await fetch(url);
@@ -14,9 +15,22 @@ async function loadColors() {
   colorMap = data.event || {};
 }
 
-async function loadEvents() {
+// === Fetch events for the next 12 months ===
+async function loadEvents(force = false) {
+  const now = Date.now();
+
+  // Skip reloading if data is recent (< 1h old) and not forced
+  if (!force && now - lastFetchTime < 60 * 60 * 1000) {
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    return;
+  }
+
+  lastFetchTime = now;
+  events = {};
+
   try {
-    await loadColors(); // ✅ load Google’s color palette first
+    await loadColors();
+
     const timeMin = new Date().toISOString();
     const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
 
@@ -31,7 +45,6 @@ async function loadEvents() {
         const date = event.start.date || event.start.dateTime.split("T")[0];
         if (!events[date]) events[date] = [];
 
-        // Use the event color, or fallback to calendar default
         const colorId = event.colorId || "7";
         const color = colorMap[colorId]?.background || "#ccc";
 
@@ -45,18 +58,24 @@ async function loadEvents() {
   }
 }
 
+// === Render the calendar ===
 function generateCalendar(year, month) {
   const calendar = document.getElementById("calendar");
   const monthYear = document.getElementById("monthYear");
   calendar.innerHTML = "";
 
-  const monthNames = ["Januari","Februari","Mars","April","Maj","Juni","Juli","Augusti","September","Oktober","November","December"];
+  const monthNames = [
+    "Januari","Februari","Mars","April","Maj","Juni",
+    "Juli","Augusti","September","Oktober","November","December"
+  ];
   monthYear.textContent = `${monthNames[month]} ${year}`;
 
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   const adjustedFirst = firstDay === 0 ? 6 : firstDay - 1; // Monday start
+
+  // Empty cells before first day
   for (let i = 0; i < adjustedFirst; i++) {
     const empty = document.createElement("div");
     calendar.appendChild(empty);
@@ -74,7 +93,7 @@ function generateCalendar(year, month) {
       events[dateString].forEach(ev => {
         const dot = document.createElement("div");
         dot.classList.add("dot");
-        dot.style.backgroundColor = getEventColor(ev.color);
+        dot.style.backgroundColor = ev.color;
         dots.appendChild(dot);
       });
       dayDiv.appendChild(dots);
@@ -85,16 +104,7 @@ function generateCalendar(year, month) {
   }
 }
 
-function getEventColor(colorId) {
-  const googleColors = {
-    "1": "#a4bdfc", "2": "#7ae7bf", "3": "#dbadff",
-    "4": "#ff887c", "5": "#fbd75b", "6": "#ffb878",
-    "7": "#46d6db", "8": "#e1e1e1", "9": "#5484ed",
-    "10": "#51b749", "11": "#dc2127"
-  };
-  return googleColors[colorId] || "#ccc";
-}
-
+// === Popup logic ===
 function showPopup(date) {
   const popup = document.getElementById("eventPopup");
   const list = document.getElementById("eventList");
@@ -115,14 +125,27 @@ document.getElementById("closePopup").addEventListener("click", () => {
   document.getElementById("eventPopup").classList.add("hidden");
 });
 
+// Close popup when clicking outside the popup box
+document.getElementById("eventPopup").addEventListener("click", (event) => {
+  const popupContent = document.querySelector(".popup-content");
+  if (!popupContent.contains(event.target)) {
+    document.getElementById("eventPopup").classList.add("hidden");
+  }
+});
+
+// === Month navigation ===
 document.getElementById("prevMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() - 1);
-  generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  loadEvents(true); // force refresh
 });
 
 document.getElementById("nextMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() + 1);
-  generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  loadEvents(true); // force refresh
 });
 
-loadEvents();
+// === Initial load ===
+loadEvents(true);
+
+// === Auto-refresh every hour ===
+setInterval(() => loadEvents(true), 60 * 60 * 1000);
