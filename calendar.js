@@ -10,6 +10,14 @@ let events = {};
 let colorMap = {};
 let lastFetchTime = 0; // track when data was last fetched
 
+// Keyword color mapping
+const keywordColors = {
+  "föreställning":  "#dc2127", // Tomato
+  "kurs":           "#fbd75b", // Banana
+  "möte":           "#46d6db", // Peacock
+  "träff":          "#51b749", // Basil
+};
+
 // === Load Google’s event colours ===
 let colorsPayload = { event: {}, calendar: {} };
 let calendarDefaultColorId = null;
@@ -65,21 +73,17 @@ async function loadEvents(force = false) {
       data.items.forEach(event => {
         const date = event.start.date || event.start.dateTime.split("T")[0];
         if (!events[date]) events[date] = [];
-
-        // Determine color:
-        // 1) event.colorId (maps via colorsPayload.event)
-        // 2) calendarDefaultColorId (maps via colorsPayload.calendar)
-        // 3) fallback
-        let chosenColor = "#cccccc"; // fallback
-
-        if (event.colorId && colorsPayload.event[event.colorId]) {
-          chosenColor = colorsPayload.event[event.colorId].background;
-        } else if (calendarDefaultColorId && colorsPayload.calendar[calendarDefaultColorId]) {
-          chosenColor = colorsPayload.calendar[calendarDefaultColorId].background;
-        } else if (event.colorId && colorsPayload.calendar[event.colorId]) {
-          // rare: colorId might be in calendar map — try that
-          chosenColor = colorsPayload.calendar[event.colorId].background;
-        }
+        
+        const name = event.summary ? event.summary.toLowerCase() : "";
+        let color = "#c7b299"; // default beige tone
+         // Assign color based on keyword
+          for (const keyword in keywordColors) {
+            if (name.includes(keyword)) {
+              color = keywordColors[keyword];
+              break;
+            }
+          }
+        let chosenColor = color; // fallback
 
         events[date].push({
           name: event.summary || "(Ingen titel)",
