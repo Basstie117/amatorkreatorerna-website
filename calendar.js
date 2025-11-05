@@ -22,30 +22,6 @@ const keywordColors = {
 let colorsPayload = { event: {}, calendar: {} };
 let calendarDefaultColorId = null;
 
-async function loadColorsAndCalendarMeta() {
-  // 1) load the google palette (event & calendar colors)
-  const colorsUrl = `https://www.googleapis.com/calendar/v3/colors?key=${API_KEY}`;
-  const colorsResp = await fetch(colorsUrl);
-  if (!colorsResp.ok) throw new Error("Colors API returned " + colorsResp.status);
-  const colorsData = await colorsResp.json();
-
-  // colorsData has two keys: .event and .calendar
-  colorsPayload.event = colorsData.event || {};
-  colorsPayload.calendar = colorsData.calendar || {};
-
-  // 2) load calendar metadata to get the calendar's default colorId (if any)
-  const calMetaUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}?key=${API_KEY}`;
-  const calResp = await fetch(calMetaUrl);
-  if (!calResp.ok) {
-    // non-fatal: continue, but log so you can debug (403 -> not public)
-    console.warn("Calendar metadata fetch returned", calResp.status);
-    calendarDefaultColorId = null;
-    return;
-  }
-  const calData = await calResp.json();
-  calendarDefaultColorId = calData.colorId || null;
-}
-
 async function loadEvents(force = false) {
   const now = Date.now();
 
@@ -59,8 +35,6 @@ async function loadEvents(force = false) {
 
   try {
     // load palette and calendar metadata
-    await loadColorsAndCalendarMeta();
-
     const timeMin = new Date().toISOString();
     const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
 
