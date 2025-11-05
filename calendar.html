@@ -26,20 +26,21 @@
 
    <main class="calendar-container">
     <h2>Vår Kalender</h2>
-    <div class="calendar-header">
-      <button id="prev-month">←</button>
-      <h2 id="month-year"></h2>
-      <button id="next-month">→</button>
+    <div class="calendar-nav">
+      <button id="prevMonth">←</button>
+      <h3 id="monthYear"></h3>
+      <button id="nextMonth">→</button>
     </div>
-    
-    <div id="calendar-body" class="calendar-body"></div>
+
+    <div id="calendar"></div>
   </main>
 
   <!-- Popup for event details -->
   <div id="eventPopup" class="popup hidden">
     <div class="popup-content">
-      <button id="closePopup" class="close-btn">✖</button>
-      <div id="popup-body"></div>
+      <span id="closePopup">&times;</span>
+      <h3 id="popupDate"></h3>
+      <ul id="eventList"></ul>
     </div>
   </div>
 
