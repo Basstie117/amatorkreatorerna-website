@@ -1,185 +1,155 @@
+// === AmatörKreatörerna Calendar Script ===
+// Fetches events from Google Calendar and colors them by keyword
 
 const CALENDAR_ID = encodeURIComponent("97d03342ebc889cac9c2b8aea1967a939f035aa81596db26ac7a7f56ac1ef1e2@group.calendar.google.com");
 const API_KEY = "AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ";
 
-let currentDate = new Date();
+// Keyword color mapping
+const keywordColors = {
+  "föreställning": "#dc2127", // Tomato
+  "kurs": "#fbd75b",          // Banana
+  "möte": "#46d6db",          // Peacock
+  "träff": "#51b749",         // Basil
+};
+
 let events = {};
-let colorMap = {};
-let lastFetchTime = 0; // track when data was last fetched
+let currentDate = new Date();
 
-// === Load Google’s event colours ===
-let colorsPayload = { event: {}, calendar: {} };
-let calendarDefaultColorId = null;
+// Load events from Google Calendar
+async function loadEvents() {
+  const timeMin = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).toISOString();
+  const timeMax = new Date(currentDate.getFullYear(), currentDate.getMonth() + 2, 0).toISOString();
 
-async function loadColorsAndCalendarMeta() {
-  // 1) load the google palette (event & calendar colors)
-  const colorsUrl = `https://www.googleapis.com/calendar/v3/colors?key=${API_KEY}`;
-  const colorsResp = await fetch(colorsUrl);
-  if (!colorsResp.ok) throw new Error("Colors API returned " + colorsResp.status);
-  const colorsData = await colorsResp.json();
-
-  // colorsData has two keys: .event and .calendar
-  colorsPayload.event = colorsData.event || {};
-  colorsPayload.calendar = colorsData.calendar || {};
-
-  // 2) load calendar metadata to get the calendar's default colorId (if any)
-  const calMetaUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}?key=${API_KEY}`;
-  const calResp = await fetch(calMetaUrl);
-  if (!calResp.ok) {
-    // non-fatal: continue, but log so you can debug (403 -> not public)
-    console.warn("Calendar metadata fetch returned", calResp.status);
-    calendarDefaultColorId = null;
-    return;
-  }
-  const calData = await calResp.json();
-  calendarDefaultColorId = calData.colorId || null;
-}
-
-async function loadEvents(force = false) {
-  const now = Date.now();
-
-  if (!force && now - lastFetchTime < 60 * 60 * 1000) {
-    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-    return;
-  }
-
-  lastFetchTime = now;
-  events = {};
+  const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
 
   try {
-    // load palette and calendar metadata
-    await loadColorsAndCalendarMeta();
-
-    const timeMin = new Date().toISOString();
-    const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
-
-    const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
     const response = await fetch(url);
-    if (!response.ok) throw new Error("Google API returned " + response.status);
-
     const data = await response.json();
-    if (data.items) {
-      data.items.forEach(event => {
-        const date = event.start.date || event.start.dateTime.split("T")[0];
-        if (!events[date]) events[date] = [];
 
-        // Determine color:
-        // 1) event.colorId (maps via colorsPayload.event)
-        // 2) calendarDefaultColorId (maps via colorsPayload.calendar)
-        // 3) fallback
-        let chosenColor = "#cccccc"; // fallback
-
-        if (event.colorId && colorsPayload.event[event.colorId]) {
-          chosenColor = colorsPayload.event[event.colorId].background;
-        } else if (calendarDefaultColorId && colorsPayload.calendar[calendarDefaultColorId]) {
-          chosenColor = colorsPayload.calendar[calendarDefaultColorId].background;
-        } else if (event.colorId && colorsPayload.calendar[event.colorId]) {
-          // rare: colorId might be in calendar map — try that
-          chosenColor = colorsPayload.calendar[event.colorId].background;
-        }
-
-        events[date].push({
-          name: event.summary || "(Ingen titel)",
-          color: chosenColor
-        });
-      });
+    if (data.error) {
+      console.error("Google API error:", data.error.message);
+      return;
     }
 
+    events = {};
+    data.items.forEach(event => {
+      const date = event.start.date || event.start.dateTime.split("T")[0];
+      if (!events[date]) events[date] = [];
+
+      const name = event.summary ? event.summary.toLowerCase() : "";
+      let color = "#c7b299"; // default beige tone
+
+      // Assign color based on keyword
+      for (const keyword in keywordColors) {
+        if (name.includes(keyword)) {
+          color = keywordColors[keyword];
+          break;
+        }
+      }
+
+      events[date].push({
+        name: event.summary || "Okänt evenemang",
+        color,
+      });
+    });
+
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-  } catch (err) {
-    console.error("Calendar load error:", err);
-    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  } catch (error) {
+    console.error("Network or fetch error:", error);
   }
 }
 
-// === Render the calendar ===
+// Generate the visual calendar
 function generateCalendar(year, month) {
-  const calendar = document.getElementById("calendar");
-  const monthYear = document.getElementById("monthYear");
-  calendar.innerHTML = "";
+  const calendarBody = document.getElementById("calendar-body");
+  const monthYear = document.getElementById("month-year");
+  calendarBody.innerHTML = "";
 
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const startDay = firstDay.getDay(); // 0 = Sunday
+
+  // Month name in Swedish
   const monthNames = [
-    "Januari","Februari","Mars","April","Maj","Juni",
-    "Juli","Augusti","September","Oktober","November","December"
+    "Januari", "Februari", "Mars", "April", "Maj", "Juni",
+    "Juli", "Augusti", "September", "Oktober", "November", "December"
   ];
   monthYear.textContent = `${monthNames[month]} ${year}`;
 
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  const adjustedFirst = firstDay === 0 ? 6 : firstDay - 1; // Monday start
-
-  // Empty cells before first day
-  for (let i = 0; i < adjustedFirst; i++) {
-    const empty = document.createElement("div");
-    calendar.appendChild(empty);
+  // Create blank slots for the start of the month
+  for (let i = 0; i < (startDay === 0 ? 6 : startDay - 1); i++) {
+    const blank = document.createElement("div");
+    blank.classList.add("day", "empty");
+    calendarBody.appendChild(blank);
   }
 
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  // Create days
+  for (let day = 1; day <= lastDay.getDate(); day++) {
+    const dateStr = new Date(year, month, day).toISOString().split("T")[0];
     const dayDiv = document.createElement("div");
     dayDiv.classList.add("day");
-    dayDiv.innerHTML = `<span class="date">${d}</span>`;
 
-    if (events[dateString]) {
-      const dots = document.createElement("div");
-      dots.classList.add("dots");
-      events[dateString].forEach(ev => {
-        const dot = document.createElement("div");
+    const label = document.createElement("div");
+    label.classList.add("date");
+    label.textContent = day;
+    dayDiv.appendChild(label);
+
+    // Add event dots
+    if (events[dateStr]) {
+      const dotsContainer = document.createElement("div");
+      dotsContainer.classList.add("dots");
+      events[dateStr].forEach(e => {
+        const dot = document.createElement("span");
         dot.classList.add("dot");
-        dot.style.backgroundColor = ev.color;
-        dots.appendChild(dot);
+        dot.style.backgroundColor = e.color;
+        dotsContainer.appendChild(dot);
       });
-      dayDiv.appendChild(dots);
-      dayDiv.addEventListener("click", () => showPopup(dateString));
+      dayDiv.appendChild(dotsContainer);
+
+      // Popup on click
+      dayDiv.addEventListener("click", () => showPopup(dateStr));
     }
 
-    calendar.appendChild(dayDiv);
+    calendarBody.appendChild(dayDiv);
   }
 }
 
-// === Popup logic ===
-function showPopup(date) {
+// Popup showing events for selected day
+function showPopup(dateStr) {
   const popup = document.getElementById("eventPopup");
-  const list = document.getElementById("eventList");
-  const popupDate = document.getElementById("popupDate");
-  list.innerHTML = "";
-  popupDate.textContent = date;
+  const popupContent = document.querySelector(".popup-content");
+  const popupBody = document.getElementById("popup-body");
 
-  events[date].forEach(ev => {
-    const li = document.createElement("li");
-    li.textContent = ev.name;
-    list.appendChild(li);
+  popupBody.innerHTML = "";
+  events[dateStr].forEach(e => {
+    const eventDiv = document.createElement("div");
+    eventDiv.classList.add("popup-event");
+    eventDiv.style.borderLeft = `5px solid ${e.color}`;
+    eventDiv.textContent = e.name;
+    popupBody.appendChild(eventDiv);
   });
 
   popup.classList.remove("hidden");
+
+  // Close popup when clicking outside
+  popup.addEventListener("click", (event) => {
+    if (!popupContent.contains(event.target)) {
+      popup.classList.add("hidden");
+    }
+  });
 }
 
+// Navigation
+document.getElementById("prev-month").addEventListener("click", () => {
+  currentDate.setMonth(currentDate.getMonth() - 1);
+  loadEvents();
+});
+document.getElementById("next-month").addEventListener("click", () => {
+  currentDate.setMonth(currentDate.getMonth() + 1);
+  loadEvents();
+});
 document.getElementById("closePopup").addEventListener("click", () => {
   document.getElementById("eventPopup").classList.add("hidden");
 });
 
-// Close popup when clicking outside the popup box
-document.getElementById("eventPopup").addEventListener("click", (event) => {
-  const popupContent = document.querySelector(".popup-content");
-  if (!popupContent.contains(event.target)) {
-    document.getElementById("eventPopup").classList.add("hidden");
-  }
-});
-
-// === Month navigation ===
-document.getElementById("prevMonth").addEventListener("click", () => {
-  currentDate.setMonth(currentDate.getMonth() - 1);
-  loadEvents(true); // force refresh
-});
-
-document.getElementById("nextMonth").addEventListener("click", () => {
-  currentDate.setMonth(currentDate.getMonth() + 1);
-  loadEvents(true); // force refresh
-});
-
-// === Initial load ===
-loadEvents(true);
-
-// === Auto-refresh every hour ===
-setInterval(() => loadEvents(true), 60 * 60 * 1000);
+loadEvents();
