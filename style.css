@@ -376,7 +376,10 @@
 		}
 
 		.day:hover {
-		  color: #8D6E63;
+		  background-color: #F1E0C8; /* slightly darker beige when hovered */
+		  transform: scale(1.03);
+		  transition: all 0.15s ease;
+		  cursor: pointer;
 		}
 		
 		.day .date {
