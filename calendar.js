@@ -5,8 +5,18 @@ const API_KEY = "AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ";
 let currentDate = new Date();
 let events = {};
 
+let colorMap = {};
+
+async function loadColors() {
+  const url = `https://www.googleapis.com/calendar/v3/colors?key=${API_KEY}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  colorMap = data.event || {};
+}
+
 async function loadEvents() {
   try {
+    await loadColors(); // ✅ load Google’s color palette first
     const timeMin = new Date().toISOString();
     const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
 
@@ -20,10 +30,12 @@ async function loadEvents() {
       data.items.forEach(event => {
         const date = event.start.date || event.start.dateTime.split("T")[0];
         if (!events[date]) events[date] = [];
-        events[date].push({
-          name: event.summary,
-          color: event.colorId || "7" // fallback colour
-        });
+
+        // Use the event color, or fallback to calendar default
+        const colorId = event.colorId || "7";
+        const color = colorMap[colorId]?.background || "#ccc";
+
+        events[date].push({ name: event.summary, color });
       });
     }
 
