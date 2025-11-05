@@ -8,18 +8,36 @@ let colorMap = {};
 let lastFetchTime = 0; // track when data was last fetched
 
 // === Load Google’s event colours ===
-async function loadColors() {
-  const url = `https://www.googleapis.com/calendar/v3/colors?key=${API_KEY}`;
-  const response = await fetch(url);
-  const data = await response.json();
-  colorMap = data.event || {};
+let colorsPayload = { event: {}, calendar: {} };
+let calendarDefaultColorId = null;
+
+async function loadColorsAndCalendarMeta() {
+  // 1) load the google palette (event & calendar colors)
+  const colorsUrl = `https://www.googleapis.com/calendar/v3/colors?key=${API_KEY}`;
+  const colorsResp = await fetch(colorsUrl);
+  if (!colorsResp.ok) throw new Error("Colors API returned " + colorsResp.status);
+  const colorsData = await colorsResp.json();
+
+  // colorsData has two keys: .event and .calendar
+  colorsPayload.event = colorsData.event || {};
+  colorsPayload.calendar = colorsData.calendar || {};
+
+  // 2) load calendar metadata to get the calendar's default colorId (if any)
+  const calMetaUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}?key=${API_KEY}`;
+  const calResp = await fetch(calMetaUrl);
+  if (!calResp.ok) {
+    // non-fatal: continue, but log so you can debug (403 -> not public)
+    console.warn("Calendar metadata fetch returned", calResp.status);
+    calendarDefaultColorId = null;
+    return;
+  }
+  const calData = await calResp.json();
+  calendarDefaultColorId = calData.colorId || null;
 }
 
-// === Fetch events for the next 12 months ===
 async function loadEvents(force = false) {
   const now = Date.now();
 
-  // Skip reloading if data is recent (< 1h old) and not forced
   if (!force && now - lastFetchTime < 60 * 60 * 1000) {
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     return;
@@ -29,13 +47,13 @@ async function loadEvents(force = false) {
   events = {};
 
   try {
-    await loadColors();
+    // load palette and calendar metadata
+    await loadColorsAndCalendarMeta();
 
     const timeMin = new Date().toISOString();
     const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
 
     const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
-
     const response = await fetch(url);
     if (!response.ok) throw new Error("Google API returned " + response.status);
 
@@ -45,16 +63,32 @@ async function loadEvents(force = false) {
         const date = event.start.date || event.start.dateTime.split("T")[0];
         if (!events[date]) events[date] = [];
 
-        const colorId = event.colorId || "7";
-        const color = colorMap[colorId]?.background || "#ccc";
+        // Determine color:
+        // 1) event.colorId (maps via colorsPayload.event)
+        // 2) calendarDefaultColorId (maps via colorsPayload.calendar)
+        // 3) fallback
+        let chosenColor = "#cccccc"; // fallback
 
-        events[date].push({ name: event.summary, color });
+        if (event.colorId && colorsPayload.event[event.colorId]) {
+          chosenColor = colorsPayload.event[event.colorId].background;
+        } else if (calendarDefaultColorId && colorsPayload.calendar[calendarDefaultColorId]) {
+          chosenColor = colorsPayload.calendar[calendarDefaultColorId].background;
+        } else if (event.colorId && colorsPayload.calendar[event.colorId]) {
+          // rare: colorId might be in calendar map — try that
+          chosenColor = colorsPayload.calendar[event.colorId].background;
+        }
+
+        events[date].push({
+          name: event.summary || "(Ingen titel)",
+          color: chosenColor
+        });
       });
     }
 
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
   } catch (err) {
     console.error("Calendar load error:", err);
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
   }
 }
 
