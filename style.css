@@ -410,6 +410,9 @@
 		  display: flex;
 		  justify-content: center;
 		  align-items: center;
+		  opacity: 0;
+		  pointer-events: none;
+		  transition: opacity 0.2s ease;
 		}
 		
 		.hidden {
@@ -431,6 +434,11 @@
 
 		.popup-content ul {
 		  color: #000;
+		}
+
+		.popup:not(.hidden) {
+		  opacity: 1;
+		  pointer-events: all;
 		}
 		
 		#closePopup {
