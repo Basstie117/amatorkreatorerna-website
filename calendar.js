@@ -18,10 +18,6 @@ const keywordColors = {
   "träff":          "#51b749", // Basil
 };
 
-// === Load Google’s event colours ===
-let colorsPayload = { event: {}, calendar: {} };
-let calendarDefaultColorId = null;
-
 async function loadEvents(force = false) {
   const now = Date.now();
 
@@ -80,8 +76,8 @@ function generateCalendar(year, month) {
   calendar.innerHTML = "";
 
   const monthNames = [
-    "Januari","Februari","Mars","April","Maj","Juni",
-    "Juli","Augusti","September","Oktober","November","December"
+    "Januari", "Februari", "Mars", "April", "Maj", "Juni",
+    "Juli", "Augusti", "September", "Oktober", "November", "December"
   ];
   monthYear.textContent = `${monthNames[month]} ${year}`;
 
@@ -96,12 +92,24 @@ function generateCalendar(year, month) {
     calendar.appendChild(empty);
   }
 
+  // Get today's date string for comparison
+  const today = new Date();
+  const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
   for (let d = 1; d <= daysInMonth; d++) {
     const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
     const dayDiv = document.createElement("div");
     dayDiv.classList.add("day");
     dayDiv.innerHTML = `<span class="date">${d}</span>`;
 
+    // Add class for past or current day
+    if (dateString < todayString) {
+      dayDiv.classList.add("past-day");
+    } else if (dateString === todayString) {
+      dayDiv.classList.add("today");
+    }
+
+    // Add dots for events
     if (events[dateString]) {
       const dots = document.createElement("div");
       dots.classList.add("dots");
