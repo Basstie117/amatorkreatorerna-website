@@ -314,7 +314,7 @@
         /* ===== CALENDAR                                             CALENDAR ===== */
         /* ========================================================================= */
 
-		/* Calendar Page Styling */
+		/* === CALENDAR PAGE === */
 		.calendar-page {
 		  padding: 120px 5% 60px;
 		  text-align: center;
@@ -325,11 +325,12 @@
 		  text-align: center;
 		  color: #000;
 		}
-
+		
 		.calendar-container h2 {
 		  color: #000;
 		}
-		 
+		
+		/* === NAVIGATION === */
 		.calendar-nav {
 		  display: flex;
 		  justify-content: center;
@@ -338,7 +339,7 @@
 		  margin-bottom: 20px;
 		  color: #000;
 		}
-
+		
 		.calendar-nav h3 {
 		  color: #000;
 		}
@@ -356,38 +357,37 @@
 		  background-color: #8D6E63;
 		}
 		
+		/* === CALENDAR GRID === */
 		#calendar {
 		  display: grid;
-		  grid-template-columns: repeat(7, minmax(0, 1fr)); /* prevents overflow */
+		  grid-template-columns: repeat(7, minmax(0, 1fr));
 		  gap: 4px;
 		  width: 100%;
-  		  max-width: 600px;          /* keeps it neat on larger screens */
+		  max-width: 700px;
 		  margin: 0 auto;
 		  padding: 10px;
 		  box-sizing: border-box;
 		}
 		
+		/* === DAY CELLS === */
 		.day {
-		  aspect-ratio: 1 / 1;
+		  aspect-ratio: 1 / 1; /* ensures perfect squares */
 		  background: #4E342E;
 		  border-radius: 10px;
 		  padding: 4px;
-		  min-height: 80px;
 		  display: flex;
 		  align-items: center;
 		  flex-direction: column;
 		  justify-content: space-between;
-		  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 		  box-sizing: border-box;
-  		  transition: transform 0.2s ease;
-  		  cursor: pointer;
-		}
-
-		.day:hover {
-		  background-color: #8D6E63; /* slightly darker beige when hovered */
-		  transform: scale(1.03);
-		  transition: all 0.15s ease;
+		  transition: transform 0.2s ease;
 		  cursor: pointer;
+		}
+		
+		.day:hover {
+		  background-color: #8D6E63;
+		  transform: scale(1.03);
 		}
 		
 		.day .date {
@@ -396,58 +396,51 @@
 		  font-size: 0.9rem;
 		}
 		
-		.day .dots {
-		  display: flex;
-		  gap: 6px;
-		  justify-content: center;
-		  margin-top: 5px;
-		}
-
+		/* === EVENT DOTS === */
 		.dots {
 		  display: grid;
-		  grid-template-columns: repeat(2, 1fr);  /* two columns */
-		  grid-auto-rows: auto;
-		  gap: 2px;
+		  grid-template-columns: repeat(2, 1fr); /* allows 2x2 layout */
+		  gap: 3px;
 		  justify-items: center;
 		  align-items: center;
 		  width: 100%;
 		  flex-grow: 1;
+		  margin-top: 4px;
 		}
 		
 		.dot {
-		  width: 16px;
-		  height: 16px;
+		  width: 8px;
+		  height: 8px;
 		  border-radius: 50%;
 		}
-
-		/* Faded look for past days */
+		
+		/* === SPECIAL STATES === */
 		.past-day {
 		  opacity: 0.85;
 		  filter: grayscale(20%);
 		}
 		
-		/* Outline and subtle glow for today */
 		.today {
-		  border: 2px solid #29160C; /* brown tone */
+		  border: 2px solid #29160C;
 		  border-radius: 8px;
 		  box-shadow: 0 0 6px rgba(139, 94, 60, 0.4);
 		  transform: scale(1.02);
 		  transition: all 0.2s ease;
 		}
 		
-		/* Slight hover lift for current day */
 		.today:hover {
 		  transform: scale(1.05);
 		  box-shadow: 0 0 10px rgba(139, 94, 60, 0.6);
 		}
 		
+		/* === POPUP === */
 		.popup {
 		  position: fixed;
 		  top: 0;
 		  left: 0;
 		  right: 0;
 		  bottom: 0;
-		  background-color: rgba(0,0,0,0.5);
+		  background-color: rgba(0, 0, 0, 0.5);
 		  display: flex;
 		  justify-content: center;
 		  align-items: center;
@@ -468,15 +461,15 @@
 		  text-align: left;
 		  position: relative;
 		}
-
+		
 		.popup-content h3 {
 		  color: #000;
 		}
-
+		
 		.popup-content ul {
 		  color: #000;
 		}
-
+		
 		.popup:not(.hidden) {
 		  opacity: 1;
 		  pointer-events: all;
@@ -581,43 +574,27 @@
 		
 		  /* CALENDAR SECTION */
 		  #calendar {
-		    display: grid;
-		    grid-template-columns: repeat(7, 1fr);  /* ensure 7 columns remain */
+		    max-width: 95vw; /* fits phone screen */
 		    gap: 3px;
-		    width: 100%;
-		    max-width: 100%;
-		    margin: 0 auto;
 		    padding: 5px;
-		    box-sizing: border-box;
 		  }
 		
 		  .day {
 		    aspect-ratio: 1 / 1;
 		    padding: 3px;
-		    overflow: hidden;  /* prevent stretched dots */
-		    display: flex;
-		    flex-direction: column;
-		    justify-content: space-between;
-		    align-items: center;
 		  }
 		
 		  .day .date {
-		    font-size: 0.75rem;
+		    font-size: 0.7rem;
 		  }
 		
 		  .dots {
-		    display: grid;
-		    grid-template-columns: repeat(2, 1fr); /* creates 2x2 grid for up to 4 dots */
+		    grid-template-columns: repeat(2, 1fr);
 		    gap: 2px;
-		    justify-items: center;
-		    align-items: center;
-		    width: auto;
-		    flex-grow: 0;
 		  }
 		
 		  .dot {
-		    width: 7px;
-		    height: 7px;
-		    border-radius: 50%;
+		    width: 6px;
+		    height: 6px;
 		  }
 		}
