@@ -358,11 +358,13 @@
 		
 		#calendar {
 		  display: grid;
-		  grid-template-columns: repeat(7, 1fr);
-		  gap: 6px;
-		  max-width: 900px;
+		  grid-template-columns: repeat(7, minmax(0, 1fr)); /* prevents overflow */
+		  gap: 4px;
+		  width: 100%;
+  		  max-width: 600px;          /* keeps it neat on larger screens */
 		  margin: 0 auto;
 		  padding: 10px;
+		  box-sizing: border-box;
 		}
 		
 		.day {
@@ -403,10 +405,11 @@
 
 		.dots {
 		  display: grid;
-		  grid-template-columns: repeat(2, 1fr); /* allows dots to form 2x2 pattern */
+		  grid-template-columns: repeat(2, 1fr);  /* two columns */
+		  grid-auto-rows: auto;
 		  gap: 2px;
-		  justify-content: center;
-		  align-content: center;
+		  justify-items: center;
+		  align-items: center;
 		  width: 100%;
 		  flex-grow: 1;
 		}
@@ -415,7 +418,6 @@
 		  width: 16px;
 		  height: 16px;
 		  border-radius: 50%;
-		  margin: 0 auto;
 		}
 
 		/* Faded look for past days */
@@ -579,8 +581,8 @@
   		  }
 
 		  #calendar {
-		    gap: 4px;
-		    padding: 5px;
+		    max-width: 100%;
+    		gap: 3px;
 		  }
 		
 		  .day {
@@ -593,7 +595,7 @@
 		  }
 		
 		  .dot {
-		    width: 6px;
-		    height: 6px;
+		    width: 16px;
+		    height: 16px;
 		  }
         }
