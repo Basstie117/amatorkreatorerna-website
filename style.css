@@ -511,91 +511,113 @@
         /* ================================= PHONE ACCESSIBILITY ================================= */
 
         @media (max-width: 768px) {
-          .fixed-header {
-            flex-direction: column; /* stack vertically on very small screens */
-          }
-
-		  .fixed-header .header-inner {
-    		flex-direction: column;
-    		gap: 8px;
-			width: 100%;
-  		  }
-            
-          .fixed-header img.logo {
-            max-height: 40px; /* smaller logo on mobile */
-          }
-            
-          .fixed-header h1 {
-            font-size: 1.4em;    /* smaller title on mobile */
-            line-height: 1.2;    /* tighter spacing */
-          }
-
-          .welcome {
-            margin-top: 100px; /* adjust depending on your header height */
-          }
-            
-          .image-text {
-		    display: flex;
-            flex-direction: column;
-			gap: 5px;
-            align-items: center;
-          }
-
-          .text-content .extra-image {
-		    order: 3; /* image after text */
-    		width: 100%;
-    		height: auto;
-  		  }
-			
-          .image-text .text-content {
-            max-width: 100%;
-			order: 2; /* text goes below the collage */
-			text-align: center;
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
-          }
-
-          .info-pair {
-            flex-direction: column;
-          }
-
-          .text-content .extra-image {
-            margin-top: 16px;
-          }
-
-		  .intro {
-			margin-top: 120px;
+		  /* HEADER */
+		  .fixed-header {
+		    flex-direction: column;
 		  }
-
-		  .project-section {
-    		grid-template-columns: 1fr; /* single column */
-  		  }
-
-  		  .project-collage img:last-child {
-    		grid-column: auto;
-  		  }
-
-  		  .project-text {
-    		margin-top: 20px;
-  		  }
-
-		  #calendar {
+		
+		  .fixed-header .header-inner {
+		    flex-direction: column;
+		    gap: 8px;
+		    width: 100%;
+		  }
+		
+		  .fixed-header img.logo {
+		    max-height: 40px;
+		  }
+		
+		  .fixed-header h1 {
+		    font-size: 1.4em;
+		    line-height: 1.2;
+		  }
+		
+		  .welcome {
+		    margin-top: 100px;
+		  }
+		
+		  /* IMAGE-TEXT layout */
+		  .image-text {
+		    display: flex;
+		    flex-direction: column;
+		    gap: 5px;
+		    align-items: center;
+		  }
+		
+		  .image-text .text-content {
 		    max-width: 100%;
-    		gap: 3px;
+		    order: 2;
+		    text-align: center;
+		    display: flex;
+		    flex-direction: column;
+		    gap: 5px;
+		  }
+		
+		  .text-content .extra-image {
+		    order: 3;
+		    width: 100%;
+		    height: auto;
+		    margin-top: 16px;
+		  }
+		
+		  .info-pair {
+		    flex-direction: column;
+		  }
+		
+		  .intro {
+		    margin-top: 120px;
+		  }
+		
+		  .project-section {
+		    grid-template-columns: 1fr;
+		  }
+		
+		  .project-collage img:last-child {
+		    grid-column: auto;
+		  }
+		
+		  .project-text {
+		    margin-top: 20px;
+		  }
+		
+		  /* CALENDAR SECTION */
+		  #calendar {
+		    display: grid;
+		    grid-template-columns: repeat(7, 1fr);  /* ensure 7 columns remain */
+		    gap: 3px;
+		    width: 100%;
+		    max-width: 100%;
+		    margin: 0 auto;
+		    padding: 5px;
+		    box-sizing: border-box;
 		  }
 		
 		  .day {
 		    aspect-ratio: 1 / 1;
 		    padding: 3px;
+		    overflow: hidden;  /* prevent stretched dots */
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: space-between;
+		    align-items: center;
 		  }
 		
 		  .day .date {
 		    font-size: 0.75rem;
 		  }
 		
-		  .dot {
-		    width: 16px;
-		    height: 16px;
+		  .dots {
+		    display: grid;
+		    grid-template-columns: repeat(2, 1fr); /* creates 2x2 grid for up to 4 dots */
+		    gap: 2px;
+		    justify-items: center;
+		    align-items: center;
+		    width: auto;
+		    flex-grow: 0;
 		  }
-        }
+		
+		  .dot {
+		    width: 7px;
+		    height: 7px;
+		    border-radius: 50%;
+		  }
+		}
