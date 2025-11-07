@@ -1,26 +1,23 @@
 // === AmatörKreatörerna Calendar Script ===
 // Fetches events from Google Calendar and colors them by keyword
 
-
 const CALENDAR_ID = encodeURIComponent("97d03342ebc889cac9c2b8aea1967a939f035aa81596db26ac7a7f56ac1ef1e2@group.calendar.google.com");
 const API_KEY = "AIzaSyBubEWvDPBb5lgZ0fruPRW7cTtUhqT1SjQ";
 
 let currentDate = new Date();
 let events = {};
-let colorMap = {};
-let lastFetchTime = 0; // track when data was last fetched
+let lastFetchTime = 0;
 
 // Keyword color mapping
 const keywordColors = {
-  "föreställning":  "#dc2127", // Tomato
-  "kurs":           "#fbd75b", // Banana
-  "möte":           "#46d6db", // Peacock
-  "träff":          "#51b749", // Basil
+  "föreställning": "#dc2127", // Tomato
+  "kurs": "#fbd75b",          // Banana
+  "möte": "#46d6db",          // Peacock
+  "träff": "#51b749",         // Basil
 };
 
 async function loadEvents(force = false) {
   const now = Date.now();
-
   if (!force && now - lastFetchTime < 60 * 60 * 1000) {
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     return;
@@ -30,10 +27,8 @@ async function loadEvents(force = false) {
   events = {};
 
   try {
-    // load palette and calendar metadata
     const timeMin = new Date().toISOString();
     const timeMax = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString();
-
     const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime`;
     const response = await fetch(url);
     if (!response.ok) throw new Error("Google API returned " + response.status);
@@ -43,21 +38,30 @@ async function loadEvents(force = false) {
       data.items.forEach(event => {
         const date = event.start.date || event.start.dateTime.split("T")[0];
         if (!events[date]) events[date] = [];
-        
+
         const name = event.summary ? event.summary.toLowerCase() : "";
-        let color = "#c7b299"; // default beige tone
-         // Assign color based on keyword
-          for (const keyword in keywordColors) {
-            if (name.includes(keyword)) {
-              color = keywordColors[keyword];
-              break;
-            }
+        let color = "#c7b299"; // default beige
+        for (const keyword in keywordColors) {
+          if (name.includes(keyword)) {
+            color = keywordColors[keyword];
+            break;
           }
-        let chosenColor = color; // fallback
+        }
+
+        // Extract time and handle both all-day and timed events
+        let startTime = event.start.dateTime ? new Date(event.start.dateTime) : null;
+        let endTime = event.end.dateTime ? new Date(event.end.dateTime) : null;
+
+        const timeText = startTime && endTime
+          ? `${startTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} – ${endTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+          : "Heldag";
 
         events[date].push({
           name: event.summary || "(Ingen titel)",
-          color: chosenColor
+          location: event.location || "Ingen plats angiven",
+          description: event.description || "Ingen beskrivning tillgänglig",
+          time: timeText,
+          color: color
         });
       });
     }
@@ -83,7 +87,6 @@ function generateCalendar(year, month) {
 
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-
   const adjustedFirst = firstDay === 0 ? 6 : firstDay - 1; // Monday start
 
   // Empty cells before first day
@@ -92,7 +95,6 @@ function generateCalendar(year, month) {
     calendar.appendChild(empty);
   }
 
-  // Get today's date string for comparison
   const today = new Date();
   const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
@@ -102,14 +104,12 @@ function generateCalendar(year, month) {
     dayDiv.classList.add("day");
     dayDiv.innerHTML = `<span class="date">${d}</span>`;
 
-    // Add class for past or current day
     if (dateString < todayString) {
       dayDiv.classList.add("past-day");
     } else if (dateString === todayString) {
       dayDiv.classList.add("today");
     }
 
-    // Add dots for events
     if (events[dateString]) {
       const dots = document.createElement("div");
       dots.classList.add("dots");
@@ -137,7 +137,12 @@ function showPopup(date) {
 
   events[date].forEach(ev => {
     const li = document.createElement("li");
-    li.textContent = ev.name;
+    li.innerHTML = `
+      <strong>${ev.name}</strong><br>
+      🕒 ${ev.time}<br>
+      📍 ${ev.location}<br>
+      📝 ${ev.description}
+    `;
     list.appendChild(li);
   });
 
@@ -148,7 +153,6 @@ document.getElementById("closePopup").addEventListener("click", () => {
   document.getElementById("eventPopup").classList.add("hidden");
 });
 
-// Close popup when clicking outside the popup box
 document.getElementById("eventPopup").addEventListener("click", (event) => {
   const popupContent = document.querySelector(".popup-content");
   if (!popupContent.contains(event.target)) {
@@ -159,16 +163,13 @@ document.getElementById("eventPopup").addEventListener("click", (event) => {
 // === Month navigation ===
 document.getElementById("prevMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() - 1);
-  loadEvents(true); // force refresh
+  loadEvents(true);
 });
-
 document.getElementById("nextMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() + 1);
-  loadEvents(true); // force refresh
+  loadEvents(true);
 });
 
-// === Initial load ===
+// === Initial load and auto-refresh ===
 loadEvents(true);
-
-// === Auto-refresh every hour ===
 setInterval(() => loadEvents(true), 60 * 60 * 1000);
