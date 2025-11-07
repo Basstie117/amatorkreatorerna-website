@@ -401,14 +401,16 @@
 		/* === EVENT DOTS === */
 		.dots {
 		  display: grid;
-		  grid-template-columns: repeat(2, auto);
+		  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 		  column-gap: 3px;
 		  row-gap: 2px;
 		  justify-items: center;
 		  align-items: center;
-		  justify-content: center; /* centers the grid as a whole */
-		  margin: 4px auto 0 auto; /* auto horizontal centering */
-		  width: auto; /* shrink to fit */
+		  justify-content: center; /* centers the grid itself */
+		  align-content: center;
+		  margin: 4px auto 0 auto;
+		  width: 100%;
+		  max-width: 40px; /* keeps it visually centered even in wide day boxes */
 		  grid-auto-flow: dense;
 		}
 		
