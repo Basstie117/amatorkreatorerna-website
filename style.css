@@ -616,6 +616,10 @@
 		    gap: 3px;
 		    padding: 5px;
 		  }
+
+		  .calendar-container {
+		    margin-top: 120px;
+		  }
 		
 		  .day {
 		    aspect-ratio: 1 / 1;
