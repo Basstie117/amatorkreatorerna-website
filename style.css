@@ -629,4 +629,8 @@
 		    width: 12px;
 		    height: 12px;
 		  }
+
+		  .popup-content {
+		    max-width: 90vw;        /* never wider than viewport */
+		  }
 		}
