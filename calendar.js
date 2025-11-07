@@ -113,12 +113,15 @@ function generateCalendar(year, month) {
     if (events[dateString]) {
       const dots = document.createElement("div");
       dots.classList.add("dots");
+      
       events[dateString].forEach(ev => {
         const dot = document.createElement("div");
         dot.classList.add("dot");
         dot.style.backgroundColor = ev.color;
+        dot.style.color = ev.color; // enables color-based glow via currentColor
         dots.appendChild(dot);
       });
+      
       dayDiv.appendChild(dots);
       dayDiv.addEventListener("click", () => showPopup(dateString));
     }
