@@ -471,7 +471,7 @@
 		  background: #fff8ef; /* your beige tone */
 		  border-radius: 12px;
 		  padding: 20px;
-		  max-width: 90vw;        /* never wider than viewport */
+		  max-width: 45vw;        /* never wider than viewport */
 		  max-height: 80vh;       /* prevent going off-screen vertically */
 		  overflow-y: auto;       /* scroll if content too tall */
 		  word-wrap: break-word;  /* break long words if needed */
