@@ -438,6 +438,16 @@
 		}
 		
 		/* === POPUP === */
+		#eventPopup {
+		  position: fixed;
+		  inset: 0;
+		  background: rgba(0, 0, 0, 0.5);
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  z-index: 1000;
+		}
+		
 		.popup {
 		  position: fixed;
 		  top: 0;
@@ -458,12 +468,15 @@
 		}
 		
 		.popup-content {
-		  background-color: #FFF;
-		  padding: 20px;
+		  background: #fff8ef; /* your beige tone */
 		  border-radius: 12px;
-		  max-width: 400px;
-		  text-align: left;
-		  position: relative;
+		  padding: 20px;
+		  max-width: 90vw;        /* never wider than viewport */
+		  max-height: 80vh;       /* prevent going off-screen vertically */
+		  overflow-y: auto;       /* scroll if content too tall */
+		  word-wrap: break-word;  /* break long words if needed */
+		  white-space: normal;    /* ensure text wraps */
+		  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 		}
 		
 		.popup-content h3 {
@@ -485,6 +498,21 @@
 		  right: 14px;
 		  cursor: pointer;
 		  font-size: 22px;
+		}
+
+		/* List inside popup */
+		#eventList li {
+		  margin-bottom: 1rem;
+		  padding: 0.5rem 0;
+		  border-bottom: 1px solid rgba(0,0,0,0.1);
+		  line-height: 1.4;
+		  color: #333;
+		}
+		
+		/* Optional: make emoji lines align neatly */
+		#eventList li strong {
+		  display: block;
+		  margin-bottom: 4px;
 		}
 
         /* ================================= SOCIAL ================================= */
