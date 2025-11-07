@@ -420,7 +420,7 @@
 		  border-radius: 50%;
 		  box-shadow:
 		    0 0 3px rgba(0, 0, 0, 0.4),      /* subtle dark shadow */
-		    0 0 6px currentColor;             /* glow in the dot’s color */
+		    0 0 3px currentColor;            /* glow in the dot’s color */
 		  color: inherit; /* ensures currentColor matches the background color */
 		}
 		
@@ -637,7 +637,7 @@
 		  }
 
 		  .popup-content {
-		    max-width: 80vw;        /* never wider than viewport */
+		    max-width: 70vw;        /* never wider than viewport */
 			max-height: 80vh;
 		  }
 		}
