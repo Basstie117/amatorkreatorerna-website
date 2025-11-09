@@ -401,7 +401,7 @@
 		.weekday-header {
 		  display: grid;
 		  grid-template-columns: repeat(7, minmax(0, 1fr));
-		  gap: 10px; /* matches the #calendar gap */
+		  gap: 30px; /* matches the #calendar gap */
 		  text-align: center;
 		  font-weight: bold;
 		  color: #29160C;
@@ -654,7 +654,7 @@
 		  .weekday-header {
 		    gap: 3px; /* match mobile calendar gap */
 		    font-size: 0.7rem;
-		    max-width: 100%;
+		    max-width: 80%;
 		  }
 		
 		  .weekday-header div {
