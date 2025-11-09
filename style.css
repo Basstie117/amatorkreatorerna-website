@@ -401,18 +401,20 @@
 		.weekday-header {
 		  display: grid;
 		  grid-template-columns: repeat(7, minmax(0, 1fr));
+		  gap: 4px; /* matches the #calendar gap */
 		  text-align: center;
 		  font-weight: bold;
-		  color: #29160C; /* dark brown tone for consistency */
+		  color: #29160C;
 		  margin: 0 auto 6px auto;
 		  max-width: 600px;
 		  width: 100%;
-		  font-size: 0.9rem;
+		  font-size: 0.85rem;
+		  box-sizing: border-box;
 		}
 		
 		.weekday-header div {
 		  padding: 4px 0;
-		  background-color: #D7CCC8; /* soft beige tone */
+		  background-color: #F5F5DC; /* soft beige tone */
 		  border-radius: 6px;
 		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 		}
@@ -649,11 +651,16 @@
 		    font-size: 0.7rem;
 		  }
 
-		  .weekday-header div {
-		    font-size: 0.8rem;
-		    padding: 3px 0;
+		  .weekday-header {
+		    gap: 3px; /* match mobile calendar gap */
+		    font-size: 0.7rem;
+		    max-width: 100%;
 		  }
 		
+		  .weekday-header div {
+		    padding: 2px 0;
+		  }
+			
 		  .dots {
 		    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 		    gap: 2px;
