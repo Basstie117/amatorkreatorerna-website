@@ -406,14 +406,14 @@
 		  font-weight: bold;
 		  color: #29160C;
 		  margin: 0 auto 6px auto;
-		  max-width: 600px;
+		  max-width: 700px;
 		  width: 100%;
+		  padding: 10px;
 		  font-size: 0.85rem;
 		  box-sizing: border-box;
 		}
 		
 		.weekday-header div {
-		  gap: 100px;
 		  padding: 4px 0;
 		  background-color: #F5F5DC; /* soft beige tone */
 		  border-radius: 6px;
