@@ -125,10 +125,10 @@
 		}
 
 	    .project-page {
-		    display: flex;
-		    gap: 20px;
-		    align-items: center;
-		    margin-bottom: 60px;
+		  	display: flex;
+		  	flex-direction: column;
+		  	gap: 60px;
+		  	padding-top: 120px;
 		}
 
 		/* Each section: collage + text in columns */
@@ -139,35 +139,41 @@
   			align-items: center;
 		}
 
+		.project-images {
+		  	position: relative;  
+		  	width: 300px;   /* adjust to your liking */
+		  	height: 200px;  /* adjust to your liking */
+		}
+
 		.project-images img {
-		  position: absolute;
-		  width: 100%;
-		  height: 100%;
-		  object-fit: cover;
-		  border-radius: 12px;
-		  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-		  transition: transform 0.3s ease, z-index 0.3s ease;
-		  cursor: pointer;
+			position: absolute;
+		  	width: 100%;
+		  	height: 100%;
+		  	object-fit: cover;
+		  	border-radius: 12px;
+		  	box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+		  	transition: transform 0.3s ease, z-index 0.3s ease;
+		  	cursor: pointer;
 		}
 		
 		/* Left image slightly up and left */
 		.project-images .img-left {
-		  top: -10px;
-		  left: -10px;
-		  z-index: 1;
+		  	top: -10px;
+		  	left: -10px;
+		  	z-index: 1;
 		}
 		
 		/* Right image slightly down and right */
 		.project-images .img-right {
-		  bottom: -10px;
-		  right: -10px;
-		  z-index: 2;
+		  	bottom: -10px;
+		  	right: -10px;
+		  	z-index: 2;
 		}
 		
 		/* Hover effect for BOTH images */
 		.project-images img:hover {
-		  transform: scale(1.06);
-		  z-index: 5;
+		  	transform: scale(1.06);
+		  	z-index: 5;
 		}
 
 		/* Collage layout 
