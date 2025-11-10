@@ -655,7 +655,8 @@
 		  .weekday-header {
 		    gap: 3px; /* match mobile calendar gap */
 		    font-size: 0.7rem;
-		    max-width:  92%;
+		    max-width:  95vw;
+			padding: 5px;
 		  }
 		
 		  .weekday-header div {
