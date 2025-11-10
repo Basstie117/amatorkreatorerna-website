@@ -141,8 +141,9 @@
 
 		.project-images {
 		  	position: relative;  
-		  	width: 600px;   /* adjust to your liking */
-		  	height: 400px;  /* adjust to your liking */
+		  	width: 700px;   /* adjust to your liking */
+		  	height: 450px;  /* adjust to your liking */
+			margin-left: 25%; /* adjust until it looks perfect */
 		}
 
 		.project-images img {
