@@ -401,7 +401,7 @@
 		.weekday-header {
 		  display: grid;
 		  grid-template-columns: repeat(7, minmax(0, 1fr));
-		  gap: 30px; 
+		  gap: 90px; 
 		  text-align: center;
 		  font-weight: bold;
 		  color: #29160C;
