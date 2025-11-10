@@ -413,7 +413,7 @@
 		}
 		
 		.weekday-header div {
-		  gap: 30px;
+		  gap: 40px;
 		  padding: 4px 0;
 		  background-color: #F5F5DC; /* soft beige tone */
 		  border-radius: 6px;
@@ -655,7 +655,7 @@
 		  .weekday-header {
 		    gap: 3px; /* match mobile calendar gap */
 		    font-size: 0.7rem;
-		    max-width:  93%;
+		    max-width:  92%;
 		  }
 		
 		  .weekday-header div {
