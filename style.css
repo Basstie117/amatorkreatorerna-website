@@ -401,7 +401,7 @@
 		.weekday-header {
 		  display: grid;
 		  grid-template-columns: repeat(7, minmax(0, 1fr));
-		  gap: 90px; 
+		  gap: 4px; 
 		  text-align: center;
 		  font-weight: bold;
 		  color: #29160C;
@@ -413,7 +413,7 @@
 		}
 		
 		.weekday-header div {
-		  gap: 40px;
+		  gap: 100px;
 		  padding: 4px 0;
 		  background-color: #F5F5DC; /* soft beige tone */
 		  border-radius: 6px;
