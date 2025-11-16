@@ -461,7 +461,7 @@
 		}
 		
 		.today {
-		  border: 2px solid #C8358C;
+		  border: 4px solid #C8358C;
 		  border-radius: 8px;
 		  box-shadow: 0 0 6px rgba(139, 94, 60, 0.4);
 		  transform: scale(1.02);
