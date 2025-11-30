@@ -25,7 +25,7 @@
 		    left: 0;
 		    right: 0;
 		    width: 100%;
-		    background-color: #8a3324;
+		    background-color: #c19a6b;
 		    color: #FFF;
 		    display: flex;
 		    justify-content: center;
@@ -52,7 +52,7 @@
 		.header-banner {
 		    height: 60px;       /* adjust based on your image */
 		    width: auto;
-			align-items: center;
+			margin: 0 auto;
 		    display: block;
 		}
 		
