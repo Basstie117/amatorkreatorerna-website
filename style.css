@@ -308,6 +308,10 @@
           align-items: center;
         }
 
+		.joinus a {
+          color: #FFF;          /* Grå vit */
+        }
+
         /* Optional: unified heading style inside pair */
         .info-pair h2 {
           margin-top: 0;
