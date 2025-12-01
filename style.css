@@ -678,7 +678,7 @@
 		  }
 
 		  .project-images {
-		    width: 90%;
+		    width: 80%;
 		    height: 180px;
 		    margin: 0 auto;
 		  }
@@ -704,13 +704,6 @@
 		
 		  .project-images .img-right {
 		    transform: translate(4%, 4%);
-		  }
-		
-		  /* Hover still enlarges */
-		  .project-images img:hover {
-		    transform: scale(1.06);
-			z-index: 5;
-  			box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 		  }
 		
 		  /* CALENDAR SECTION */
