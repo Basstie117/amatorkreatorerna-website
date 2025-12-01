@@ -300,6 +300,10 @@
           background: #4E342E;     /* Lila 7678 C */
           color: #FFF;          /* Grå vit */
         }
+
+        .contact a {
+          color: #FFF;          /* Grå vit */
+        }
         
         .joinus {
           background: #4E342E;     /* Lila 7678 C */
