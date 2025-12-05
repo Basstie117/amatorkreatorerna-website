@@ -1,7 +1,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background-color: #FFF3D1; /* General background colour */
+            background-color: #FFFBF0; /* General background colour */
             color: #000; /* Black */
             margin: 0;
             padding: 0;
@@ -194,7 +194,7 @@
         /* ================================= WELCOME ================================= */
 
         .welcome {
-            background-color: #FFF3D1; /* Light beige */
+            background-color: #FFFBF0; /* Light beige */
             align-items: center; /* centers items horizontally */
             justify-content: center; /* vertical centering if you have fixed height */
             text-align: center;
@@ -229,7 +229,7 @@
           display: grid;
           align-items: end;
           gap: 40px;
-          background-color: #FFF3D1;
+          background-color: #FFFBF0;
           padding: 50px;
           color: #000;
           grid-template-columns: 1fr 1fr; /* left and right halves */
@@ -416,7 +416,7 @@
 		
 		.day .date {
 		  font-weight: bold;
-		  color: #FFF3D1;
+		  color: #FFFBF0;
 		  font-size: 0.9rem;
 		  margin-bottom: 2px;
 		}
@@ -438,7 +438,7 @@
 		
 		.weekday-header div {
 		  padding: 4px 0;
-		  background-color: #FFF3D1; /* soft beige tone */
+		  background-color: #FFFBF0; /* soft beige tone */
 		  border-radius: 6px;
 		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 		}
