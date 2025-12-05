@@ -1,8 +1,8 @@
 
         body {
             font-family: 'Georgia', serif;
-            background-color: #F5F5DC; /* Beige - General background colour */
-            color: #FFF; /* Dark brown */
+            background-color: #FFF3D1; /* General background colour */
+            color: #000; /* Black */
             margin: 0;
             padding: 0;
         }
@@ -194,7 +194,7 @@
         /* ================================= WELCOME ================================= */
 
         .welcome {
-            background-color: #F5F5DC; /* Light beige */
+            background-color: #FFF3D1; /* Light beige */
             align-items: center; /* centers items horizontally */
             justify-content: center; /* vertical centering if you have fixed height */
             text-align: center;
@@ -229,7 +229,7 @@
           display: grid;
           align-items: end;
           gap: 40px;
-          background-color: #F5F5DC;
+          background-color: #FFF3D1;
           padding: 50px;
           color: #000;
           grid-template-columns: 1fr 1fr; /* left and right halves */
@@ -297,7 +297,7 @@
 
         /* Keep your brown/beige palette */
         .contact {
-          background: #4E342E;     /* Lila 7678 C */
+          background: #68498E;     /* Lila 7678 C */
           color: #FFF;          /* Grå vit */
         }
 
@@ -306,7 +306,7 @@
         }
         
         .joinus {
-          background: #4E342E;     /* Lila 7678 C */
+          background: #68498E;     /* Lila 7678 C */
           color: #FFF;          /* Grå vit */
           text-align: center;
           align-items: center;
@@ -328,7 +328,7 @@
           display: inline-block;
           padding: 10px 16px;
           border-radius: 999px;
-          background: #4E342E; /* light brown */
+          background: #68498E; /* light brown */
           color: #FFF;
           text-decoration: none;
         }
@@ -368,7 +368,7 @@
 		}
 		
 		.calendar-nav button {
-		  background-color: #4E342E;
+		  background-color: #68498E;
 		  color: white;
 		  border: none;
 		  border-radius: 6px;
@@ -395,7 +395,7 @@
 		/* === DAY CELLS === */
 		.day {
 		  aspect-ratio: 1 / 1; /* ensures perfect squares */
-		  background: #4E342E;
+		  background: #68498E;
 		  border-radius: 10px;
 		  padding: 4px;
 		  display: flex;
@@ -416,7 +416,7 @@
 		
 		.day .date {
 		  font-weight: bold;
-		  color: #F5F5DC;
+		  color: #FFF3D1;
 		  font-size: 0.9rem;
 		  margin-bottom: 2px;
 		}
@@ -438,7 +438,7 @@
 		
 		.weekday-header div {
 		  padding: 4px 0;
-		  background-color: #F5F5DC; /* soft beige tone */
+		  background-color: #FFF3D1; /* soft beige tone */
 		  border-radius: 6px;
 		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 		}
@@ -577,7 +577,7 @@
         /* ================================= FOOTER ================================= */
 
         footer {
-            background-color: #4E342E; /*  */
+            background-color: #68498E; /*  */
             color: #FFF;
             text-align: center;
             padding: 20px;
