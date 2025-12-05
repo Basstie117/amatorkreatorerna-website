@@ -25,7 +25,7 @@
 		    left: 0;
 		    right: 0;
 		    width: 100%;
-		    background-color: #a99a86;
+		    background-color: #AFD2F3;
 		    color: #FFF;
 		    display: flex;
 		    justify-content: center;
@@ -81,7 +81,7 @@
 		}
 		
 		.fixed-header .nav-link {
-		    color: #F5F5DC;
+		    color: #68498E;
 		    text-decoration: none;
 		    font-size: 1.15em;
 		    font-weight: 500;
