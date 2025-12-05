@@ -131,6 +131,15 @@ function generateCalendar(year, month) {
 }
 
 // === Popup logic ===
+
+// Converts URLs in text into clickable <a> links
+function linkify(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, url => {
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+  });
+}
+
 function showPopup(date) {
   const popup = document.getElementById("eventPopup");
   const list = document.getElementById("eventList");
@@ -144,7 +153,7 @@ function showPopup(date) {
       <strong>${ev.name}</strong><br>
       🕒 ${ev.time}<br>
       📍 ${ev.location}<br>
-      📝 ${ev.description}
+      📝 ${linkify(ev.description)}
     `;
     list.appendChild(li);
   });
