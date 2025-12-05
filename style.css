@@ -297,17 +297,17 @@
 
         /* Keep your brown/beige palette */
         .contact {
-          background: #68498E;     /* Lila 7678 C */
-          color: #FFF;          /* Grå vit */
+          background: #AFD2F3;     /* Lila 7678 C */
+          color: #68498E;          /* Grå vit */
         }
 
         .contact a {
-          color: #FFF;          /* Grå vit */
+          color: #C8358C;          /* Grå vit */
         }
         
         .joinus {
-          background: #68498E;     /* Lila 7678 C */
-          color: #FFF;          /* Grå vit */
+          background: #AFD2F3;     /* Lila 7678 C */
+          color: #68498E;          /* Grå vit */
           text-align: center;
           align-items: center;
         }
@@ -320,7 +320,7 @@
         .info-pair h2 {
           margin-top: 0;
           text-align: center;
-          color: #FFF;
+          color: #68498E;
         }
 
         /* Simple button style */
@@ -328,8 +328,8 @@
           display: inline-block;
           padding: 10px 16px;
           border-radius: 999px;
-          background: #68498E; /* light brown */
-          color: #FFF;
+          background: #AFD2F3; /* Blue */
+          color: #68498E;
           text-decoration: none;
         }
 
@@ -578,7 +578,7 @@
 
 		.site-footer {
 		    background-color: #AFD2F3;
-		    color: #FFF;
+		    color: #68498E;
 		    padding: 20px 0;
 		    position: relative;
 		    width: 100%;
