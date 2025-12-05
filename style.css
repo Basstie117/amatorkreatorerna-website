@@ -576,13 +576,34 @@
 
         /* ================================= FOOTER ================================= */
 
-        footer {
-            background-color: #68498E; /*  */
-            color: #FFF;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
+		.site-footer {
+		    background-color: #AFD2F3;
+		    color: #FFF;
+		    padding: 20px 0;
+		    position: relative;
+		    width: 100%;
+		}
+		
+		.footer-inner {
+		    max-width: 1200px;
+		    margin: 0 auto;
+		    position: relative; /* lets us absolutely position logo */
+		    text-align: center; /* centers the text */
+		}
+		
+		.footer-logo {
+		    position: absolute;
+		    left: 20px;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    height: 40px;        /* adjust as needed */
+		}
+		
+		.footer-text {
+		    margin: 0;
+		    font-size: 0.9em;
+		}
+
 
         /* ================================= PHONE ACCESSIBILITY ================================= */
 
@@ -750,5 +771,13 @@
 		  .popup-content {
 		    max-width: 70vw;        /* never wider than viewport */
 			max-height: 80vh;
+		  }
+		  .footer-logo {
+		      height: 32px;
+		      left: 10px;
+		  }
+		
+		  .footer-text {
+		      font-size: 0.8em;
 		  }
 		}
