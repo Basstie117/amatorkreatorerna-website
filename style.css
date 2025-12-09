@@ -717,6 +717,11 @@
 		    width: 95%;            /* smaller images on small screens */
 		    height: 95%;
 		  }
+
+		/* Hover effect for BOTH images */
+		  .project-images img:hover {
+			  
+		  }
 		
 		  /* Keep the overlap but subtler */
 		  .project-images .img-left {
