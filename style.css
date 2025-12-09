@@ -714,17 +714,17 @@
 		
 		  .project-images img {
 		    position: absolute;
-		    width: 75%;            /* smaller images on small screens */
+		    width: 95%;            /* smaller images on small screens */
 		    height: 95%;
 		  }
 		
 		  /* Keep the overlap but subtler */
 		  .project-images .img-left {
-		    transform: translate(-4%, -4%);
+		    transform: translate(-10%, -10%);
 		  }
 		
 		  .project-images .img-right {
-		    transform: translate(4%, 4%);
+		    transform: translate(10%, 10%);
 		  }
 		
 		  /* CALENDAR SECTION */
