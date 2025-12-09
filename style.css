@@ -714,7 +714,7 @@
 		
 		  .project-images img {
 		    position: absolute;
-		    width: 95%;            /* smaller images on small screens */
+		    width: 75%;            /* smaller images on small screens */
 		    height: 95%;
 		  }
 		
