@@ -720,7 +720,8 @@
 
 		/* Hover effect for BOTH images */
 		  .project-images img:hover {
-			  
+		  	transform: scale(1.00);
+		  	z-index: 5;	  
 		  }
 		
 		  /* Keep the overlap but subtler */
