@@ -14,6 +14,7 @@ const keywordColors = {
   "kurs": "#fbd75b",          // Banana
   "möte": "#46d6db",          // Peacock
   "träff": "#51b749",         // Basil
+  "projekt": "#6F2DA8",       // Grape
 };
 
 async function loadEvents(force = false) {
