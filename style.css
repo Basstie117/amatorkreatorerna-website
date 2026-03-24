@@ -350,7 +350,8 @@
         }
 
 		.btn:hover {
-		    background-color: #6f5636;
+		    background-color: #FDD26E;
+		    transform: scale(1.03);
 		}
 
         /* ========================================================================= */
