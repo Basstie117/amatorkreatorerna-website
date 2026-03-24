@@ -16,6 +16,22 @@
   			opacity: 0.9;            /* subtle feedback on hover */
 		}
 
+		html, body {
+		  height: 100%;
+		  margin: 0;
+		}
+		
+		body {
+		  display: flex;
+		  flex-direction: column;
+		  min-height: 100vh; /* full screen height */
+		}
+		
+		/* This is the key part */
+		main {
+		  flex: 1; /* takes up all remaining space */
+		}
+
         /* ================================= HEADER ================================= */
 
         /* Fixed Header Base */
